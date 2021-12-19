@@ -1,7 +1,5 @@
 package qiosk.demo.domain.item;
 
-import java.util.Optional;
-
 import lombok.Data;
 
 /**
@@ -16,17 +14,15 @@ public class Item {
     
     private Long id;
     private String itemname;
-    private Integer price;
+    private int price;
     private Integer quantity;
-    private Optional<String> description;
+    private String description;
 
     public Item(){}
 
-    public Item(Long id, String itemname, Integer price, Integer quantity, Optional<String> description) {
-        this.id = id;
+    public Item(String itemname, int price, String description) {
         this.itemname = itemname;
         this.price = price;
-        this.quantity = quantity;
         this.description = description;
     }
 
