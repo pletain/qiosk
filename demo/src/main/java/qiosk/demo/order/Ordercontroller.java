@@ -36,9 +36,9 @@ public class Ordercontroller {
     @ResponseBody
     public List<Item> Items() {
         Item itemA = new Item("가츠동", 7000, "국내산 '生' 안심 돈까스");
-        Item itemB = new Item("사케동", 8500, "떠먹는 '生' 연어 초밥");
+        // Item itemB = new Item("사케동", 8500, "떠먹는 '生' 연어 초밥");
         itemRepository.save(itemA);
-        itemRepository.save(itemB);
+        // itemRepository.save(itemB);
         List<Item> items = itemRepository.findAll();
         return items;
     }
