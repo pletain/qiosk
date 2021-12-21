@@ -17,6 +17,7 @@ public class Item {
     private int price;
     private Integer quantity;
     private String description;
+    private String imgsrc;
 
     public Item(){}
 

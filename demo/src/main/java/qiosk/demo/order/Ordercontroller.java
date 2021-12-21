@@ -59,8 +59,6 @@ public class Ordercontroller {
     @ResponseBody
     @PostMapping("")
     public void takeOrder(@RequestBody OrderList orderList) {
-        // Item item = itemRepository.findById(itemId);
-        // model.addAttribute("item", item);
         orderList.getOrders().forEach(order -> orderRepository.saveOrder(orderList.getClientId(), order));
         orderList.getOrders()
                 .forEach(order -> log.info("clientId={}, order={}", orderList.getClientId(), order.getItemName()));
@@ -79,26 +77,5 @@ public class Ordercontroller {
         ItemDescription detail = new ItemDescription(itemRepository.findById(itemId).getDescription());
         return detail;
     }
-
-    @GetMapping(value = "/pic", produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody byte[] getImageWithMediaType() throws IOException {
-        InputStream in = getClass().getResourceAsStream("/static/images/image.jpeg");
-        return IOUtils.toByteArray(in);
-    }
-
-    // @GetMapping(value = "/getPNG", produces = "image/png")
-    // public @ResponseBody byte[] getPNG(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    //     InputStream in = getClass().getResourceAsStream("/public/images/gominsi.png");
-    //     return IOUtils.toByteArray(in);
-    // }// :
-
-    // @GetMapping("/pic")
-    // public ResponseEntity<Resource> viewImg() throws IOException {
-    // String inputFile = "/static/images/image.jpeg";
-    // Path path = new File(inputFile).toPath();
-    // FileSystemResource resource = new FileSystemResource(path);
-    // return
-    // ResponseEntity.ok().contentType(MediaType.parseMediaType(Files.probeContentType(path))).body(resource);
-    // }
 
 }
