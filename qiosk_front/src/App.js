@@ -5,7 +5,7 @@ import Axios from "axios";
 function App() {
   const [user, setUser] = useState("");
   useEffect(() => {
-    Axios.get("/order").then((response) => {
+    Axios.get("/pic").then((response) => {
       if(response.data) {
         setUser(response.data);
       } else {
@@ -16,7 +16,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <h1>{JSON.stringify(user.itemname, null, 2)}</h1>
+      <h1></h1>
+      <img src="https://localhost:10001/pic" alt="" style="height: 300px;"></img>
       <h1>23</h1>
       </header>
       <p className="App-intro">

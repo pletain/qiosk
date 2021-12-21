@@ -1,7 +1,15 @@
 package qiosk.demo.order;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.IOUtils;
+// import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,19 +51,20 @@ public class Ordercontroller {
         return items;
     }
 
-        // 주문 접수
-        /**
-         * 
-         * @param orderList
-         */
-        @ResponseBody
-        @PostMapping("")
-        public void takeOrder(@RequestBody OrderList orderList) {
-            // Item item = itemRepository.findById(itemId);
-            // model.addAttribute("item", item);
-            orderList.getOrders().forEach(order -> orderRepository.saveOrder(orderList.getClientId(), order));
-            orderList.getOrders().forEach(order -> log.info("clientId={}, order={}", orderList.getClientId(), order.getItemName()));
-        }
+    // 주문 접수
+    /**
+     * 
+     * @param orderList
+     */
+    @ResponseBody
+    @PostMapping("")
+    public void takeOrder(@RequestBody OrderList orderList) {
+        // Item item = itemRepository.findById(itemId);
+        // model.addAttribute("item", item);
+        orderList.getOrders().forEach(order -> orderRepository.saveOrder(orderList.getClientId(), order));
+        orderList.getOrders()
+                .forEach(order -> log.info("clientId={}, order={}", orderList.getClientId(), order.getItemName()));
+    }
 
     // 상품 상세보기
     /**
@@ -71,6 +80,25 @@ public class Ordercontroller {
         return detail;
     }
 
+    @GetMapping(value = "/pic", produces = MediaType.IMAGE_JPEG_VALUE)
+    public @ResponseBody byte[] getImageWithMediaType() throws IOException {
+        InputStream in = getClass().getResourceAsStream("/static/images/image.jpeg");
+        return IOUtils.toByteArray(in);
+    }
 
+    // @GetMapping(value = "/getPNG", produces = "image/png")
+    // public @ResponseBody byte[] getPNG(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    //     InputStream in = getClass().getResourceAsStream("/public/images/gominsi.png");
+    //     return IOUtils.toByteArray(in);
+    // }// :
+
+    // @GetMapping("/pic")
+    // public ResponseEntity<Resource> viewImg() throws IOException {
+    // String inputFile = "/static/images/image.jpeg";
+    // Path path = new File(inputFile).toPath();
+    // FileSystemResource resource = new FileSystemResource(path);
+    // return
+    // ResponseEntity.ok().contentType(MediaType.parseMediaType(Files.probeContentType(path))).body(resource);
+    // }
 
 }
