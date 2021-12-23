@@ -1,15 +1,8 @@
 package qiosk.demo.order;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.io.IOUtils;
-// import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import qiosk.demo.domain.item.Item;
 import qiosk.demo.domain.item.ItemDescription;
 import qiosk.demo.domain.item.ItemRepository;
+import qiosk.demo.domain.order.Order;
 import qiosk.demo.domain.order.OrderList;
 import qiosk.demo.domain.order.OrderRepository;
 
@@ -34,7 +28,7 @@ public class Ordercontroller {
 
     private final ItemRepository itemRepository;
     private final OrderRepository orderRepository;
-
+    private static long tb = 0L;
     // 주문 홈
     /**
      * 
@@ -51,6 +45,27 @@ public class Ordercontroller {
         return items;
     }
 
+    @GetMapping("/makeorder")
+    @ResponseBody
+    public String MakeOrder() {
+
+        OrderList orderList = new OrderList();
+        orderList.setClientId(21L);
+        orderList.setTableNum(tb++);
+
+        Order orderA = new Order("가츠동", 2);
+        Order orderB = new Order("사케동", 1);
+        List<Order> orders = new ArrayList<>();
+        orders.add(orderA);
+        orders.add(orderB);
+
+        orderList.setOrders(orders);
+
+        orderRepository.saveOrder(orderList);
+
+        return "주문이 접수 됐습니다!";
+    }
+
     // 주문 접수
     /**
      * 
@@ -59,7 +74,7 @@ public class Ordercontroller {
     @ResponseBody
     @PostMapping("")
     public void takeOrder(@RequestBody OrderList orderList) {
-        orderList.getOrders().forEach(order -> orderRepository.saveOrder(orderList.getClientId(), order));
+        orderRepository.saveOrder(orderList, orderList.getOrders());
         orderList.getOrders()
                 .forEach(order -> log.info("clientId={}, order={}", orderList.getClientId(), order.getItemName()));
     }

@@ -11,39 +11,62 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class OrderRepositoryImpl implements OrderRepository{
 
-    private static final Map<Long, Order> store = new HashMap<>();
+    private static final Map<Long, List<Order>> store = new HashMap<>();
+    private static final Map<Long, OrderList> db = new HashMap<>();
     private static long sequence = 0L;
 
     @Override
-    public Order saveOrder(Long clientId, Order order) {
-        order.setOrderId(++sequence);
-        order.setClientId(clientId);
-        store.put(order.getOrderId(), order);
-        return order;
+    public void saveOrder(OrderList orderList, List<Order> orders) {
+        orderList.setOrderId(sequence++);
+        
+        Long orderId = orderList.getOrderId();
+        Long clientId = orderList.getClientId();
+
+        store.put(orderId, orders);
+        store.put(clientId, orders);
     }
 
     @Override
-    public Order findByOrderId(Long orderId) {
+    public void saveOrder(OrderList orderList) {
+        orderList.setOrderId(sequence++);
+        db.put(orderList.getTableNum(), orderList);
+    }
+
+    // @Override
+    // public Order saveOrder(Long clientId, Order order) {
+    //     order.setOrderId(++sequence);
+    //     order.setClientId(clientId);
+    //     store.put(order.getOrderId(), order);
+    //     return order;
+    // }
+
+    @Override
+    public List<Order> findByOrderId(Long orderId) {
         return store.get(orderId);
     }
 
     @Override
-    public Order findByClientId(Long clientId) {
+    public List<Order> findByClientId(Long clientId) {
         return store.get(clientId);
     }
 
     @Override
     public List<Order> findAll() {
-        return new ArrayList<>(store.values());
+        List<Order> everyOrder = new ArrayList<Order>();
+
+        store.values().forEach(orders -> everyOrder.addAll(orders));
+
+        return everyOrder;
     }
 
     @Override
-    public void update(Long orderId, Order updateParam) {
-        Order findOrder = findByOrderId(orderId);
-        findOrder.setClientId(updateParam.getClientId());
-        findOrder.setItemName(updateParam.getItemName());
-        findOrder.setQuantity(updateParam.getQuantity());
+    public List<OrderList> findAlls() {
+        List<OrderList> allOrder = new ArrayList<OrderList>();
+        db.values().forEach(orderList -> allOrder.add(orderList));
+
+        return allOrder;
     }
+
 
     @Override
     public void clearStore() {
