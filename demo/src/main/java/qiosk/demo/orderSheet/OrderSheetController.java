@@ -18,7 +18,7 @@ import qiosk.demo.domain.order.OrderRepository;
 @RequiredArgsConstructor
 public class OrderSheetController {
 
-    private final OrderRepository orderRepository;
+    private final OrderRepository orderRepository; 
 
     // 주문 관리 홈
     /**
