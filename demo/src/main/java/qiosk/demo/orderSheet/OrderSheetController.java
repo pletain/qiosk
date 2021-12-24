@@ -4,13 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
-import qiosk.demo.domain.item.ItemDescription;
-import qiosk.demo.domain.item.ItemRepository;
 import qiosk.demo.domain.order.OrderList;
 import qiosk.demo.domain.order.OrderRepository;
 
@@ -19,10 +18,13 @@ import qiosk.demo.domain.order.OrderRepository;
 @RequiredArgsConstructor
 public class OrderSheetController {
 
-    private final ItemRepository itemRepository;
     private final OrderRepository orderRepository;
 
     // 주문 관리 홈
+    /**
+     * 
+     * @return 주문 리스트 정보 반환
+     */
     @GetMapping("")
     @ResponseBody
     public List<OrderList> ShowOrders() {
@@ -30,18 +32,17 @@ public class OrderSheetController {
         return orders;
     }
 
-    // 상품 상세보기
+    //주문 삭제
     /**
      * 
-     * @param itemId
-     * @param model
-     * @return 특정 상품 정보 반환
+     * @param tableNum
      */
-    @GetMapping("/{itemId}")
+    @PostMapping("")
     @ResponseBody
-    public ItemDescription detail(@PathVariable Long itemId) {
-        ItemDescription detail = new ItemDescription(itemRepository.findById(itemId).getDescription());
-        return detail;
+    public void DelteOrder(@RequestBody Long tableNum) {
+        // orderRepository.saveOrder(orderList, orderList.getOrders());
+        // orderList.getOrders()
+        //         .forEach(order -> log.info("clientId={}, order={}", orderList.getClientId(), order.getItemName()));
     }
 
 }
