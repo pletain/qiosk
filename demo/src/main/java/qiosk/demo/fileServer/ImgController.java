@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Controller
-@Slf4j
 // @RequiredArgsConstructor
 public class ImgController {
     @GetMapping(value = "image/{imagename}", produces = MediaType.IMAGE_JPEG_VALUE)
