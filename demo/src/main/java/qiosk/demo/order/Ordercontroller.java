@@ -75,6 +75,8 @@ public class Ordercontroller {
     @ResponseBody
     @PostMapping("")
     public void takeOrder(@RequestBody OrderList orderList) {
+        log.info("accepting...");
+        log.info("orderList: " + orderList);
         orderRepository.saveOrder(orderList, orderList.getOrders());
         orderList.getOrders()
                 .forEach(order -> log.info("clientId={}, order={}", orderList.getClientId(), order.getItemName()));
