@@ -40,6 +40,7 @@ public class Ordercontroller {
         Item itemA = new Item("가츠동", 7000, "국내산 '生' 안심 돈까스");
         // Item itemB = new Item("사케동", 8500, "떠먹는 '生' 연어 초밥");
         itemA.setImgsrc("https://qioskbucket.s3.ap-northeast-2.amazonaws.com/ragdoll.jpg");
+        itemA.setQuantity(1);
         itemRepository.save(itemA);
         // itemRepository.save(itemB);
         List<Item> items = itemRepository.findAll();
