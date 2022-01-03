@@ -31,20 +31,19 @@ const ItemList = ({ add }) => {
         <>
             <div>
                 {itemDatas.map((itemData) => {
-                    const { id, itemname, price, quantity, description, imgsrc } = itemData;
+                    const { id, itemname, price, description, imgsrc } = itemData;
 
                     return (
-                    <div key={id}>
-                        {imgsrc && <img src={imgsrc} />}
+                    <div key={id} onClick={() => add(itemData)}>
+                        {imgsrc && <img alt="상품이미지" src={imgsrc} width="300" height="300" />}
                     <div>
                             <h2>{itemname}</h2>
                             <h3>{price}</h3>
                             <p>{description}</p>
                         </div>
-                        <button onClick={() => add(itemData)}>
-                            추가하기
-                        </button>
+                        <hr />
                     </div>
+                    
             )
             })}
         </div>

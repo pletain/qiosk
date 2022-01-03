@@ -37,12 +37,6 @@ public class Ordercontroller {
     @GetMapping("")
     @ResponseBody
     public List<Item> Items() {
-        Item itemA = new Item("가츠동", 7000, "국내산 '生' 안심 돈까스");
-        // Item itemB = new Item("사케동", 8500, "떠먹는 '生' 연어 초밥");
-        itemA.setImgsrc("https://qioskbucket.s3.ap-northeast-2.amazonaws.com/ragdoll.jpg");
-        itemA.setQuantity(1);
-        itemRepository.save(itemA);
-        // itemRepository.save(itemB);
         List<Item> items = itemRepository.findAll();
         return items;
     }
@@ -50,6 +44,17 @@ public class Ordercontroller {
     @GetMapping("/makeorder")
     @ResponseBody
     public String MakeOrder() {
+
+        Item itemA = new Item("치즈 쫙~통모짜치즈카츠", 11000, "돈카츠 속에 치즈 왕창 묻고 더블로 갓~", "https://qioskbucket.s3.ap-northeast-2.amazonaws.com/itemA.jpeg");
+        Item itemB = new Item("고소단백 차슈라멘", 8500, "고소하고 단백한 차슈라멘 한사발 하실레예~", "https://qioskbucket.s3.ap-northeast-2.amazonaws.com/itemB.jpeg");
+        Item itemC = new Item("얼큰~얼큰차슈라멘", 9000, "한국식 맵고 칼칼한 얼큰한맛 해장엔 최고최고", "https://qioskbucket.s3.ap-northeast-2.amazonaws.com/itemC.jpeg");
+        Item itemD = new Item("두툼바삭 생등심돈카츠", 8500, "100%국내산등심으로 매일숙성작업하는 신선한 돈카츠", "https://qioskbucket.s3.ap-northeast-2.amazonaws.com/itemD.jpeg");
+        Item itemE = new Item("가정식카레", 7500, "입맛없을땐 카레 한그릇 뚝딱~", "https://qioskbucket.s3.ap-northeast-2.amazonaws.com/itemE.jpeg");
+        itemRepository.save(itemA);
+        itemRepository.save(itemB);
+        itemRepository.save(itemC);
+        itemRepository.save(itemD);
+        itemRepository.save(itemE);
 
         OrderList orderList = new OrderList();
         orderList.setClientId(21L);
@@ -80,7 +85,7 @@ public class Ordercontroller {
         log.info("orderList: " + orderList);
         orderRepository.saveOrder(orderList, orderList.getOrders());
         orderList.getOrders()
-                .forEach(order -> log.info("clientId={}, order={}", orderList.getClientId(), order.getItemName()));
+                .forEach(order -> log.info("주문자ID={}, 상품={}x{}", orderList.getClientId(), order.getItemName(), order.getQuantity()));
     }
 
     // 상품 상세보기

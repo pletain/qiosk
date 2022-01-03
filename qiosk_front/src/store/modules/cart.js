@@ -48,23 +48,24 @@ export const total = () => {
 
 const INITIAL_STATE = {
     cart: [
-        {
-            id: 1,
-            itemname: "가츠동",
-            price: 7000, 
-            quantity: 2, 
-            description: "국내산 '生' 안심 돈까스",
-        },
-        {
-            id: 2,
-            itemname: "에비동",
-            price: 8500, 
-            quantity: 1, 
-            description: "국내산 '生' 안심 돈까스",
-        }
     ],
     total: 0,
 };
+
+// {
+//     id: 1,
+//     itemname: "가츠동",
+//     price: 7000, 
+//     quantity: 2, 
+//     description: "국내산 '生' 안심 돈까스",
+// },
+// {
+//     id: 2,
+//     itemname: "에비동",
+//     price: 8500, 
+//     quantity: 1, 
+//     description: "국내산 '生' 안심 돈까스",
+// }
 
 const cart = (state = INITIAL_STATE, action) => {
     switch (action.type) {
