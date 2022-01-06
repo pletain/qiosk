@@ -1,10 +1,13 @@
 import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import styles from '../styles/client.module.css';
+
 
 const CartItem = ({ item, remove, onIncrease, onDecrease }) => {
     const { id, itemname, price, quantity } = item;
 
     return (
-        item && <div className="eachItem" key={id}>
+        item && <div key={id}>
             <div>
                 <h3>{itemname} x {quantity}</h3>
                 <div>
@@ -33,7 +36,13 @@ const Cart = ({ items, remove, removeAll, onIncrease, onDecrease }) => {
 
     if (items.cart.length === 0) {
         return (
-            <div>장바구니가 비었습니다.</div>
+            <div>
+                <table>
+                    <td className={styles.back} ><Link to="/" ><img alt="back-icon" width="20" height="20" src="https://qioskbucket.s3.ap-northeast-2.amazonaws.com/icon/left-arrow.png" /></Link></td>
+                    <td>장바구니</td>
+                    <td><button onClick={() => removeAll()}>전체삭제</button></td>
+                </table>
+            </div>
         )
     }
     console.log('cart.js');
@@ -41,8 +50,11 @@ const Cart = ({ items, remove, removeAll, onIncrease, onDecrease }) => {
     return (
         <div className="cart">
             <h2>
-                <p>장바구니</p>
-                <div align="right"><button onClick={() => removeAll()}>전체삭제</button></div>
+                <table>
+                    <td className={styles.back} ><Link to="/" ><img alt="back-icon" width="20" height="20" src="https://qioskbucket.s3.ap-northeast-2.amazonaws.com/icon/left-arrow.png" /></Link></td>
+                    <td>장바구니</td>
+                    <td><button onClick={() => removeAll()}>전체삭제</button></td>
+                </table>
             </h2>
 
             <div className="item_list">
@@ -55,7 +67,7 @@ const Cart = ({ items, remove, removeAll, onIncrease, onDecrease }) => {
                     />
                 ))}
             </div>
-            <hr/>
+            <hr />
             <div><h3>총 주문금액 {totalPrice}원</h3></div>
         </div>
     )
