@@ -8,7 +8,7 @@ const CartContainer = () => {
     const items = useSelector(state => state.cart);
 
     console.log('CartContainer = ' + items)
-    
+
     const dispatch = useDispatch();
 
     const remove = useCallback(item => dispatch(deleteCart(item)), [dispatch]);
@@ -18,14 +18,18 @@ const CartContainer = () => {
 
     return (
         <>
-            < Cart
-                items={items}
-                remove={remove}
-                removeAll={removeAll}
-                onIncrease={onIncrease}
-                onDecrease={onDecrease}
-            />
-            <Order items={items} removeAll={removeAll} />
+            <div>
+                <Cart
+                    items={items}
+                    remove={remove}
+                    removeAll={removeAll}
+                    onIncrease={onIncrease}
+                    onDecrease={onDecrease}
+                />
+            </div>
+            <div>
+                <Order items={items} removeAll={removeAll} />
+            </div>
         </>
     );
 

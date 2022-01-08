@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import BTN from '../styles/button.module.css'
 
 const Order = ({ items, removeAll }) => {
     const [loading, setLoading] = useState(false);
@@ -44,7 +45,9 @@ const Order = ({ items, removeAll }) => {
         return <div>대기 중...</div>
     }
 
-    return <button onClick={() => { sendOrder(); removeAll();}}>주문하기</button>;
+    return (
+        <button className={BTN.order} onClick={() => { sendOrder(); removeAll(); }}>주문하기</button>
+    );
 };
 
 export default Order;

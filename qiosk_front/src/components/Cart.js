@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../styles/client.module.css';
+import Icon from '../styles/icon.module.css';
+import UI from '../styles/ui.module.css';
+import BTN from '../styles/button.module.css';
 
 
 const CartItem = ({ item, remove, onIncrease, onDecrease }) => {
@@ -37,10 +39,22 @@ const Cart = ({ items, remove, removeAll, onIncrease, onDecrease }) => {
     if (items.cart.length === 0) {
         return (
             <div>
-                <table>
-                    <td className={styles.back} ><Link to="/" ><img alt="back-icon" width="20" height="20" src="https://qioskbucket.s3.ap-northeast-2.amazonaws.com/icon/left-arrow.png" /></Link></td>
-                    <td>장바구니</td>
-                    <td><button onClick={() => removeAll()}>전체삭제</button></td>
+                <table className={UI.navbar}>
+                    <td className={UI.back}>
+                        <div className={UI.space} />
+                        <Link to="/">
+                            <img className={Icon.back} alt="뒤로가기" src="/icon/left-arrow.png" />
+                        </Link>
+                    </td>
+                    <td>
+                        장바구니가 비었습니다
+                    </td>
+                    <td className={UI.clear}>
+                        <button className={BTN.clear} onClick={() => removeAll()}>
+                            전체삭제
+                        </button>
+                        <div className={UI.space} />
+                    </td>
                 </table>
             </div>
         )
@@ -48,16 +62,28 @@ const Cart = ({ items, remove, removeAll, onIncrease, onDecrease }) => {
     console.log('cart.js');
     console.log(items.cart);
     return (
-        <div className="cart">
-            <h2>
-                <table>
-                    <td className={styles.back} ><Link to="/" ><img alt="back-icon" width="20" height="20" src="https://qioskbucket.s3.ap-northeast-2.amazonaws.com/icon/left-arrow.png" /></Link></td>
-                    <td>장바구니</td>
-                    <td><button onClick={() => removeAll()}>전체삭제</button></td>
+        <div className={UI.orderList}>
+            <div>
+                <table className={UI.navbar}>
+                    <td className={UI.back}>
+                        <div className={UI.space} />
+                        <Link to="/">
+                            <img className={Icon.back} alt="뒤로가기" src="/icon/left-arrow.png" />
+                        </Link>
+                    </td>
+                    <td>
+                        장바구니
+                    </td>
+                    <td className={UI.clear}>
+                        <button className={BTN.clear} onClick={() => removeAll()}>
+                            전체삭제
+                        </button>
+                        <div className={UI.space} />
+                    </td>
                 </table>
-            </h2>
+            </div>
 
-            <div className="item_list">
+            <div>
                 {items.cart.map((item) => (
                     <CartItem
                         item={item}

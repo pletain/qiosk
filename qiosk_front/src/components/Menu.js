@@ -31,9 +31,8 @@ const ItemList = ({ add }) => {
     }
 
     return (
-        <>
-            <div>
-                <div>
+            <div className={styles.menuContent}>
+                <div className={styles.modal}>
                     <Modal isOpen={alertIsOpen} onRequestClose={() => setAlertIsOpen(false)} >
                         장바구니에 담겼습니다.
                     </Modal>
@@ -42,7 +41,7 @@ const ItemList = ({ add }) => {
                     const { id, itemname, price, description, imgsrc } = itemData;
 
                     return (
-                        <div key={id} className={styles.item} onClick={() => {
+                        <div className={styles.menu} key={id} className={styles.item} onClick={() => {
                             add(itemData);
                             setAlertIsOpen(true);
                             setTimeout(() => { setAlertIsOpen(false); }, 1000)
@@ -50,7 +49,7 @@ const ItemList = ({ add }) => {
                             {imgsrc && <img alt="상품이미지" src={imgsrc} width="300" height="300" />}
                             <div>
                                 <h2>{itemname}</h2>
-                                <h3>{price}</h3>
+                                <h3>{price}원</h3>
                                 <p>{description}</p>
                             </div>
                             <hr />
@@ -59,7 +58,6 @@ const ItemList = ({ add }) => {
                     )
                 })}
             </div>
-        </>
     );
 };
 

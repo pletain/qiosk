@@ -1,0 +1,19 @@
+.cart {
+    box-shadow: 3px 3px 3px black;
+    border-radius: 50px;
+    height: 100%;
+    transition-duration: 0.3s;
+    width: 50px;
+    width: 50px;
+}
+
+.cart:active {
+    box-shadow: none;
+}
+
+.back {
+    display: flex;
+    align-items: flex-start;
+    width: 20px;
+    height: 20px;
+}
