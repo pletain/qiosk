@@ -54,7 +54,7 @@ public class Ordercontroller {
         itemRepository.save(itemB);
         itemRepository.save(itemC);
         itemRepository.save(itemD);
-        itemRepository.save(itemE);
+        itemRepository.save(itemE); 
 
         OrderList orderList = new OrderList();
         orderList.setClientId(21L);
