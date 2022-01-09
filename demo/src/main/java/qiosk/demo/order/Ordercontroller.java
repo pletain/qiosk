@@ -56,19 +56,19 @@ public class Ordercontroller {
         itemRepository.save(itemD);
         itemRepository.save(itemE);
 
-        OrderList orderList = new OrderList();
-        orderList.setClientId(21L);
-        orderList.setTableNum(tb++);
+        // OrderList orderList = new OrderList();
+        // orderList.setClientId(21L);
+        // orderList.setTableNum(tb++);
 
-        Order orderA = new Order("가츠동", 2);
-        Order orderB = new Order("사케동", 1);
-        List<Order> orders = new ArrayList<>();
-        orders.add(orderA);
-        orders.add(orderB);
+        // Order orderA = new Order("가츠동", 2);
+        // Order orderB = new Order("사케동", 1);
+        // List<Order> orders = new ArrayList<>();
+        // orders.add(orderA);
+        // orders.add(orderB);
 
-        orderList.setOrders(orders);
+        // orderList.setOrders(orders);
 
-        orderRepository.saveOrder(orderList);
+        // orderRepository.saveOrder(orderList);
 
         return "주문이 접수 됐습니다!";
     }
@@ -83,7 +83,7 @@ public class Ordercontroller {
     public void takeOrder(@RequestBody OrderList orderList) {
         log.info("accepting...");
         log.info("orderList: " + orderList);
-        orderRepository.saveOrder(orderList, orderList.getOrders());
+        orderRepository.saveOrder(orderList);
         orderList.getOrders()
                 .forEach(order -> log.info("주문자ID={}, 상품={}x{}", orderList.getClientId(), order.getItemName(), order.getQuantity()));
     }

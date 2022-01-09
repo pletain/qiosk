@@ -7,8 +7,11 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @Repository
+@Slf4j
 public class OrderRepositoryImpl implements OrderRepository{
 
     private static final Map<Long, List<Order>> store = new HashMap<>();
@@ -27,9 +30,10 @@ public class OrderRepositoryImpl implements OrderRepository{
     }
 
     @Override
-    public void saveOrder(OrderList orderList) {
-        orderList.setOrderId(sequence++);
-        db.put(orderList.getTableNum(), orderList);
+    public OrderList saveOrder(OrderList orderList) {
+        orderList.setOrderId(++sequence);
+        db.put(orderList.getOrderId(), orderList);
+        return orderList;
     }
 
     // @Override
@@ -60,11 +64,8 @@ public class OrderRepositoryImpl implements OrderRepository{
     }
 
     @Override
-    public List<OrderList> findAlls() {
-        List<OrderList> allOrder = new ArrayList<OrderList>();
-        db.values().forEach(orderList -> allOrder.add(orderList));
-
-        return allOrder;
+    public List<OrderList> findAllOrder() {
+        return new ArrayList<>(db.values());
     }
 
 

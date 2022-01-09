@@ -11,7 +11,7 @@ const App = () => {
   return (
       <div>
         <Routes>
-          <Route path="/" element={<><MenuContainer /><Link to="/cart" style={{ position: 'fixed', bottom: 10, right: 10 }} ><img className={styles.cart} alt="cart-icon" src="/icon/cart.png" /></Link></>} exact={true} />
+          <Route path="/" element={<><MenuContainer /><Link to="/cart" ><img className={styles.cart} alt="cart-icon" src="/icon/shopping-cart.png" /></Link></>} exact={true} />
           <Route path="/cart" element={<><CartContainer /><div></div></>} exact={true} />
         </Routes>
       </div>
