@@ -3,6 +3,7 @@ package qiosk.demo.orderManage;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,7 +41,7 @@ public class OrderManageController {
      * 
      * @param tableNum
      */
-    @PostMapping("")
+    @DeleteMapping("")
     @ResponseBody
     public void DelteOrder(@RequestBody Long tableNum) {
         // orderRepository.saveOrder(orderList, orderList.getOrders());

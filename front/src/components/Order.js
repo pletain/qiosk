@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import BTN from '../styles/button.module.css'
 
 const Order = ({ items, removeAll }) => {
@@ -46,7 +47,10 @@ const Order = ({ items, removeAll }) => {
     }
 
     return (
-        <button className={BTN.order} onClick={() => { sendOrder(); removeAll(); }}>주문하기</button>
+        <Link to="/">
+            <button className={BTN.order} onClick={() => { sendOrder(); removeAll(); }}>주문하기</button>
+        </Link>
+        
     );
 };
 
