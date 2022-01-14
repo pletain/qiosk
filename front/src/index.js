@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './store/modules';
 import { BrowserRouter } from 'react-router-dom';
+import SnackbarProvider from 'react-simple-snackbar'
 
 const store = createStore(rootReducer, composeWithDevTools());
 
@@ -17,7 +18,9 @@ ReactDOM.render(
 
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <SnackbarProvider>
+        <App />
+      </SnackbarProvider>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')

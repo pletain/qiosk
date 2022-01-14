@@ -27,9 +27,10 @@ const CartContainer = () => {
                     onDecrease={onDecrease}
                 />
             </div>
-            <div>
-                <Order items={items} removeAll={removeAll} />
-            </div>
+            {items.cart.length === 0 ? null
+                :<div>
+                    <Order items={items} removeAll={removeAll} />
+                </div>}
         </>
     );
 

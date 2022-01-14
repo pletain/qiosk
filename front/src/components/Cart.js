@@ -57,8 +57,9 @@ const Cart = ({ items, remove, removeAll, onIncrease, onDecrease }) => {
                         <div className={UI.space} />
                     </td>
                 </table>
-                <div className={UI.orderList}>
-                    <img alt="empty-cart" width="50" src="/icon/empty-cart.png" />
+                <div className={UI.emptyCart}>
+                    <img alt="empty-cart" width="100" src="/icon/empty-cart.png" />
+                    <h3>장바구니가 비었습니다.</h3>
                 </div>
             </div>
         )
