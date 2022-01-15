@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import Icon from '../styles/icon.module.css';
 import UI from '../styles/ui.module.css';
 import BTN from '../styles/button.module.css';
 

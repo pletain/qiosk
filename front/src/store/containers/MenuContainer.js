@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import Menu from '../../components/Menu';
-import StoreSign from '../../components/StoreSign';
 import { addCart } from '../modules/cart';
 
 

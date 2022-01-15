@@ -3,7 +3,6 @@ import MenuContainer from './store/containers/MenuContainer';
 import CartContainer from './store/containers/CartContainer';
 import OrderManage from './components/OrderManage'
 import { Link, Route, Routes } from 'react-router-dom';
-import Modal from 'react-modal'; 
 import styles from './styles/icon.module.css';
 
 
@@ -20,5 +19,3 @@ const App = () => {
   )
 }
 export default App;
-
-Modal.setAppElement('#root')

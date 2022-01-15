@@ -27,3 +27,17 @@
     width: 13px;
     margin: 13px;
 }
+
+.capsule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    width: auto;
+    height: 20px;
+    padding: 8px;
+    margin-left: 5px;
+    border-radius: 20px;
+    background-color: rgba(99, 70, 38, 0.808);
+    color: white;
+}

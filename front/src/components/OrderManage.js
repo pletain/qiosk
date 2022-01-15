@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../styles/client.module.css';
 import axios from 'axios';
 
 const OrderMange = () => {
@@ -30,12 +29,12 @@ const OrderMange = () => {
     }
 
     return (
-            <div className={styles.menuContent}>
+            <div>
                 {orderDatas.map((orderData) => {
                     const { orderId, clientId, tableNum, orders } = orderData;
 
                     return (
-                        <div className={styles.menu} key={orderId} className={styles.item}>
+                        <div key={orderId}>
                             <div>
                                 <h2>주문번호 : {orderId}</h2>
                                 <h2>테이블 번호: {tableNum}</h2>

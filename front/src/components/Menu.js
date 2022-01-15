@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../styles/client.module.css';
+import UI from '../styles/ui.module.css';
+import BTN from '../styles/button.module.css';
 import axios from 'axios';
 import { useSnackbar } from 'react-simple-snackbar'
 
@@ -13,7 +14,7 @@ const ItemList = ({ add }) => {
             textAlign: 'center',
             borderRadius: '50px',
             width: '50%',
-            
+
         },
         closeStyle: {
             display: 'none',
@@ -46,26 +47,37 @@ const ItemList = ({ add }) => {
     }
 
     return (
-        <div className={styles.menuContent}>
-            {itemDatas.map((itemData) => {
-                const { id, itemname, price, description, imgsrc } = itemData;
+        <div>
+            <div className={UI.menubar}>
+                <div className={UI.title}>장인라멘</div>
+                <div className={UI.category}>
+                    <div className={BTN.capsule}>라멘</div>
+                    <div className={BTN.capsule}>돈카츠</div>
+                    <div className={BTN.capsule}>카레</div>
+                </div>
+            </div>
+            <div className={UI.menuboard}>
+                {itemDatas.map((itemData) => {
+                    const { id, itemname, price, description, imgsrc } = itemData;
 
-                return (
-                    <div className={styles.menu} key={id} className={styles.item} onClick={() => {
-                        add(itemData);
-                        openSnackbar(itemname + ' 선택하셨습니다.', [2000]);
-                    }}>
-                        {imgsrc && <img alt="상품이미지" src={imgsrc} width="300" height="300" />}
-                        <div>
-                            <h2>{itemname}</h2>
-                            <h3>{price}원</h3>
-                            <p>{description}</p>
+                    return (
+                        <div className={UI.menu} key={id} onClick={() => {
+                            add(itemData);
+                            openSnackbar(itemname + ' 선택하셨습니다.', [2000]);
+                        }}>
+                            <div className={UI.menuDetail}>
+                                <span className={UI.menuName}>{itemname}</span>
+                                <span className={UI.menuDesc}>{description}</span>
+                                <div className={UI.menuPrice}>{price}원</div>
+                            </div>
+                            <div>
+                                {imgsrc && <img className={UI.menuImg} alt="상품이미지" src={imgsrc} />}
+                            </div>
                         </div>
-                        <hr />
-                    </div>
+                    )
 
-                )
-            })}
+                })}
+            </div>
         </div>
     );
 };
