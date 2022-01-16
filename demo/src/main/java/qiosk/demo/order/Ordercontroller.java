@@ -1,6 +1,7 @@
 package qiosk.demo.order;
 
-import java.util.ArrayList;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 import qiosk.demo.domain.item.Item;
 import qiosk.demo.domain.item.ItemDescription;
 import qiosk.demo.domain.item.ItemRepository;
-import qiosk.demo.domain.order.Order;
 import qiosk.demo.domain.order.OrderList;
 import qiosk.demo.domain.order.OrderRepository;
 
@@ -70,7 +70,7 @@ public class Ordercontroller {
 
         // orderRepository.saveOrder(orderList);
 
-        return "주문이 접수 됐습니다!";
+        return "상뭎이 준비 됐습니다!";
     }
 
     // 주문 접수
@@ -81,7 +81,12 @@ public class Ordercontroller {
     @ResponseBody
     @PostMapping("")
     public void takeOrder(@RequestBody OrderList orderList) {
+        LocalTime now = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        String formatedNow = now.format(formatter);
+        orderList.setTime(formatedNow);
         log.info("accepting...");
+        log.info("time: " + formatedNow);
         log.info("orderList: " + orderList);
         orderRepository.saveOrder(orderList);
         orderList.getOrders()

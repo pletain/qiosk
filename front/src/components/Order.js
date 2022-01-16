@@ -9,7 +9,7 @@ const Order = ({ items, removeAll }) => {
     const OrderList = {
         orderId: null,
         clientId: 151,
-        tableNum: 17,
+        tableNum: 2,
         serving: null,
         payment: null,
         orders: [],
@@ -19,6 +19,7 @@ const Order = ({ items, removeAll }) => {
         return {
             itemName: item.itemname,
             quantity: item.quantity,
+            price: item.price,
         }
     });
 

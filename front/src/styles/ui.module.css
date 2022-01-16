@@ -44,13 +44,21 @@
     background-color: #e9e9e9e8;
 }
 
+.menuBody {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.menuBody::-webkit-scrollbar {
+    display:none;
+}
+
 .menubar {
     display: flex;
     width: 100%;
     height: 12vh;
     flex-wrap: wrap;
     align-content: space-around;
-    background-color: #facc3731;
     border-bottom: 1px solid #8f8f8f;
 }
 
@@ -61,7 +69,7 @@
     padding-top: 5px;
     justify-content: center;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .category {

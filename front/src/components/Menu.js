@@ -47,13 +47,13 @@ const ItemList = ({ add }) => {
     }
 
     return (
-        <div>
+        <div className={UI.menuBody}>
             <div className={UI.menubar}>
-                <div className={UI.title}>장인라멘</div>
+                <div className={UI.title}>장인라멘 영등포점</div>
                 <div className={UI.category}>
-                    <div className={BTN.capsule}>라멘</div>
-                    <div className={BTN.capsule}>돈카츠</div>
-                    <div className={BTN.capsule}>카레</div>
+                    <div className={BTN.capsule}>#라멘</div>
+                    <div className={BTN.capsule}>#돈카츠</div>
+                    <div className={BTN.capsule}>#카레</div>
                 </div>
             </div>
             <div className={UI.menuboard}>
