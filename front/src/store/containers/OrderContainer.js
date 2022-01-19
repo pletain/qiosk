@@ -5,8 +5,7 @@ import { cleanCart } from '../modules/cart';
 
 const OrderContainer = () => {
     const items = useSelector(state => state.cart);
-
-    console.log('OrderContainer = ' + items)
+    const table = useSelector(state => state.table);
     
     const dispatch = useDispatch();
 
@@ -14,7 +13,7 @@ const OrderContainer = () => {
 
     return (
         <>
-            <Order items={items} removeAll={removeAll} />
+            <Order items={items} table={table} removeAll={removeAll} />
         </>
     );
 

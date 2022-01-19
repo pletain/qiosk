@@ -10,6 +10,7 @@ public interface OrderRepository {
     List<Order> findByOrderId(Long orderId);
     List<Order> findAll();
     List<OrderList> findAllOrder();
+    void deleteOrder(Long orderId);
     // void update(Long orderId, List<Order> order);
     void clearStore();
 }

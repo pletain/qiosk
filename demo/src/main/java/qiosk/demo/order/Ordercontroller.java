@@ -70,7 +70,7 @@ public class Ordercontroller {
 
         // orderRepository.saveOrder(orderList);
 
-        return "상뭎이 준비 됐습니다!";
+        return "상품이 준비 됐습니다!";
     }
 
     // 주문 접수

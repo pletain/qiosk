@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import UI from '../styles/ui.module.css';
 import BTN from '../styles/button.module.css';
 
@@ -30,6 +30,13 @@ const CartItem = ({ item, remove, onIncrease, onDecrease }) => {
 
 
 const Cart = ({ items, remove, removeAll, onIncrease, onDecrease }) => {
+
+    let navigate = useNavigate();
+
+    const handleGoback = () => {
+        navigate(-1);
+    };
+
     let totalPrice = useMemo(() => {
         return items.cart.map((item) => {
             const { price, quantity } = item;
@@ -44,9 +51,9 @@ const Cart = ({ items, remove, removeAll, onIncrease, onDecrease }) => {
                 <table className={UI.navbar}>
                     <td className={UI.back}>
                         <div className={UI.space} />
-                        <Link to="/">
-                            <img alt="뒤로가기" width="25" align="center" src="/icon/left-arrow.png" />
-                        </Link>
+                        
+                            <img alt="뒤로가기" onClick={handleGoback} width="25" height="25" align="center" src="/icon/left-arrow.png" />
+                        
                     </td>
                     <td>
                         장바구니
@@ -70,9 +77,9 @@ const Cart = ({ items, remove, removeAll, onIncrease, onDecrease }) => {
             <table className={UI.navbar}>
                 <td className={UI.back}>
                     <div className={UI.space} />
-                    <Link to="/">
-                        <img alt="뒤로가기" width="25" align="center" src="/icon/left-arrow.png" />
-                    </Link>
+                    
+                        <img alt="뒤로가기" onClick={handleGoback} width="25" height="25" align="center" src="/icon/left-arrow.png" />
+                    
                 </td>
                 <td>
                     장바구니

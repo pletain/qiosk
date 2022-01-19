@@ -4,6 +4,7 @@ const INCREMENT = 'cart/INCREMENT';
 const DECREMENT = 'cart/DECREMENT';
 const CLEAN = 'cart/CLEAN';
 const TOTAL = 'cart/TOTAL';
+const RECORD = 'cart/RECORD';
 
 
 export const addCart = item => {
@@ -46,10 +47,18 @@ export const total = () => {
     };
 };
 
+export const recordTable = tbnum => {
+    return {
+        type: RECORD,
+        tbnum,
+    };
+};
+
 const INITIAL_STATE = {
     cart: [
     ],
     total: 0,
+    table: null,
 };
 
 // {
@@ -111,6 +120,11 @@ const cart = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 total: sum
+            };
+        case RECORD:
+            return {
+                ...state,
+                table: action.tbnum
             }
         default:
             return state;

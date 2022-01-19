@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import BTN from '../styles/button.module.css'
 
-const Order = ({ items, removeAll }) => {
+const Order = ({ items, table, removeAll }) => {
     const [loading, setLoading] = useState(false);
+    let navigate = useNavigate();
+    const handleGoback = () => {
+        navigate(-1);
+    };
+
+    console.log(table);
 
     const OrderList = {
         orderId: null,
         clientId: 151,
-        tableNum: 2,
+        tableNum: table,
         serving: null,
         payment: null,
         orders: [],
@@ -22,9 +28,6 @@ const Order = ({ items, removeAll }) => {
             price: item.price,
         }
     });
-
-    console.log(OrderList);
-
 
     const sendOrder = () => {
         const fetchData = async () => {
@@ -48,10 +51,7 @@ const Order = ({ items, removeAll }) => {
     }
 
     return (
-        <Link to="/">
-            <button className={BTN.order} onClick={() => { sendOrder(); removeAll(); }}>주문하기</button>
-        </Link>
-        
+            <button className={BTN.order} onClick={() => { sendOrder(); removeAll(); handleGoback(); }}>주문하기</button>
     );
 };
 

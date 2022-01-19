@@ -74,6 +74,11 @@ public class OrderRepositoryImpl implements OrderRepository{
         store.clear();
     }
 
+    @Override
+    public void deleteOrder(Long orderId) {
+        db.remove(orderId);
+    }
+
 
     
 }

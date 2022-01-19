@@ -6,8 +6,7 @@ import { deleteCart, increment, decrement, cleanCart } from '../modules/cart';
 
 const CartContainer = () => {
     const items = useSelector(state => state.cart);
-
-    console.log('CartContainer = ' + items)
+    const table = items.table;
 
     const dispatch = useDispatch();
 
@@ -29,7 +28,7 @@ const CartContainer = () => {
             </div>
             {items.cart.length === 0 ? null
                 :<div>
-                    <Order items={items} removeAll={removeAll} />
+                    <Order items={items} table={table} removeAll={removeAll} />
                 </div>}
         </>
     );

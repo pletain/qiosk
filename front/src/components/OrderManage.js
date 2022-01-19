@@ -3,10 +3,80 @@ import UI from '../styles/manage.module.css';
 import BTN from '../styles/button.module.css';
 import axios from 'axios';
 
+const OrderComponent = ({ orderData, deleteOrder }) => {
+    let totalPrice = 0
+    const { orderId, time, tableNum, orders } = orderData;
+    const [onToggle, setOnToggle] = useState(false);
+
+    const toggleshow = () => {
+        setOnToggle(!onToggle);
+    }
+
+    const deleteData = () => {
+        const URL = "/ordermanage/delete/" + orderId;
+        axios.delete(URL,)
+        .then(response => {
+            deleteOrder(orderId);
+            if(response.data != null) {
+                alert("주문이 처리됐습니다.");
+            }
+        })
+    };
+
+    console.log(orderData);
+
+    return (
+        <div onClick={toggleshow} className={UI.order}>
+            <div className={UI.info}>
+                <div className={UI.group}>
+                    <div id={UI.odNum}>{orderId}</div>
+                    <div id={UI.tbNum}>{tableNum}번 테이블</div>
+                </div>
+                {(onToggle===false) ?
+                    <div className={BTN.capsule} id={UI.time}>{time}</div> 
+                    : <div onClick={deleteData} className={BTN.capsule} id={UI.time}>결제처리</div>
+                }
+                {/* <div className={BTN.capsule} id={UI.time}>{time}</div> */}
+            </div>
+            <div id={UI.list}>주문 리스트</div>
+            <div id={UI.detail}>
+                {orders.map((order) => {
+                    const { itemName, price, quantity } = order;
+                    totalPrice += price * quantity;
+
+                    return (
+                        <div className={UI.detail}>
+                            <div>
+                                {itemName} x {quantity}
+                            </div>
+                            <div>
+                                {price * quantity}원
+                            </div>
+                        </div>
+
+                    )
+                })}
+            </div>
+            <div className={UI.total}>
+                <div>합계</div>
+                <div id={UI.total}>{totalPrice}원</div>
+            </div>
+        </div>
+    )
+}
+
+
 const OrderMange = () => {
 
     const [orderDatas, setOrderDatas] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const deleteOrder = (orderId) => {
+        setOrderDatas(
+            orderDatas.filter((orderData) => 
+            orderData.orderId !== orderId)
+        );
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,6 +105,8 @@ const OrderMange = () => {
         );
     }
 
+    console.log(orderDatas);
+
     return (
         <div className={UI.orderMange}>
             <div className={UI.navbar}>
@@ -42,45 +114,13 @@ const OrderMange = () => {
             </div>
 
             <div className={UI.orderBody}>
-                {orderDatas.map((orderData) => {
-                    let totalPrice = 0
-                    const { orderId, time, tableNum, orders } = orderData;
-
-                    return (
-                        <div className={UI.order} key={orderId}>
-                            <div className={UI.info}>
-                                <div className={UI.group}>
-                                    <div id={UI.odNum}>{orderId}</div>
-                                    <div id={UI.tbNum}>{tableNum}번 테이블</div>
-                                </div>
-                                <div className={BTN.capsule} id={UI.time}>{time}</div>
-                            </div>
-                            <div id={UI.list}>주문 리스트</div>
-                            <div id={UI.detail}>
-                                {orders.map((order) => {
-                                    const { itemName, price, quantity } = order;
-                                    totalPrice += price * quantity;
-
-                                    return (
-                                        <div className={UI.detail}>
-                                            <div>
-                                                {itemName} x {quantity}
-                                            </div>
-                                            <div>
-                                                {price * quantity}원
-                                            </div>
-                                        </div>
-
-                                    )
-                                })}
-                            </div>
-                            <div className={UI.total}>
-                                <div>합계</div>
-                                <div id={UI.total}>{totalPrice}원</div>
-                            </div>
-                        </div>
-                    )
-                })}
+                {
+                orderDatas.map((orderData) => (
+                    <OrderComponent
+                    orderData={orderData}
+                    deleteOrder={deleteOrder}
+                    />
+                ))}
             </div>
         </div>
     );
