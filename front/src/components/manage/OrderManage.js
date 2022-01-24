@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import UI from '../styles/manage.module.css';
-import BTN from '../styles/button.module.css';
+import UI from '../../styles/manage.module.css';
+import BTN from '../../styles/button.module.css';
 import axios from 'axios';
 
 const OrderComponent = ({ orderData, deleteOrder }) => {

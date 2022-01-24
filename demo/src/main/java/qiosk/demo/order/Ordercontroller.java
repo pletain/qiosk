@@ -28,7 +28,6 @@ public class Ordercontroller {
 
     private final ItemRepository itemRepository;
     private final OrderRepository orderRepository;
-    private static long tb = 0L;
     // 주문 홈
     /**
      * 
@@ -55,20 +54,6 @@ public class Ordercontroller {
         itemRepository.save(itemC);
         itemRepository.save(itemD);
         itemRepository.save(itemE);
-
-        // OrderList orderList = new OrderList();
-        // orderList.setClientId(21L);
-        // orderList.setTableNum(tb++);
-
-        // Order orderA = new Order("가츠동", 2);
-        // Order orderB = new Order("사케동", 1);
-        // List<Order> orders = new ArrayList<>();
-        // orders.add(orderA);
-        // orders.add(orderB);
-
-        // orderList.setOrders(orders);
-
-        // orderRepository.saveOrder(orderList);
 
         return "상품이 준비 됐습니다!";
     }
