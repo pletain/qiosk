@@ -14,11 +14,6 @@ const Profile = () => {
         try {
 
             const userId = user_id;
-            const Isexist = await axios.post(
-                '/check',
-                user_id,
-                {headers: {"Content-Type": "text/plain"}}
-            );
             setExist(Isexist);
         } catch (err) {
             console.log(err);

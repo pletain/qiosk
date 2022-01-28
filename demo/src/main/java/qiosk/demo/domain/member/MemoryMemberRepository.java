@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class MemoryMemberRepository implements MemberRepository{
 
-    private static final Map<String, Member> members = new HashMap<String, Member>();
+    private static final Map<Integer, Member> members = new HashMap<Integer, Member>();
 
     @Override
     public Member save(Member member) {
@@ -19,7 +19,7 @@ public class MemoryMemberRepository implements MemberRepository{
     }
 
     @Override
-    public Member findById(String id) {
+    public Member findById(Integer id) {
         return members.get(id);
     }
 

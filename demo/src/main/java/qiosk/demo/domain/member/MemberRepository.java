@@ -5,7 +5,7 @@ import java.util.List;
 public interface MemberRepository {
     
     Member save(Member member);
-    Member findById(String id);
+    Member findById(Integer id);
     List<Member> findAllMembers();
     Boolean isExist(String id);
 }
