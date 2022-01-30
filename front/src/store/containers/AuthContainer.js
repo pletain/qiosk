@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Auth from '../../components/login/Auth';
 import { getNewb } from '../modules/signup';
 

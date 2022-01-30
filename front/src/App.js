@@ -3,11 +3,10 @@ import MenuContainer from './store/containers/MenuContainer';
 import CartContainer from './store/containers/CartContainer';
 import OrderManage from './components/manage/OrderManage'
 import styles from './styles/icon.module.css';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom';
 import AuthContainer from "./store/containers/AuthContainer";
 import SignupContainer from "./store/containers/SignupContainer";
 import Profile from "./components/login/Profile";
-import Signup from "./components/login/Signup";
 
 const App = () => {
 
