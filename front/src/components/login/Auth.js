@@ -14,35 +14,11 @@ const Auth = ({ sendinfo }) => {
 
     const getToken = async () => {
 
-        const payload = qs.stringify({
-            grant_type: "authorization_code",
-            client_id: REST_API_KEY,
-            redirect_uri: REDIRECT_URI,
-            code: code,
-            client_secret: CLIENT_SECRET,
-        });
-
         try {
-            // access token 가져오기
-            const res = await axios.post(
-                "https://kauth.kakao.com/oauth/token",
-                payload
-            ); 
-            console.log("res = ", res);
-            console.log(res);
-            const access_token = res.data.access_token;
-
-            console.log(access_token);
-            // Kakao Javascript SDK 초기화
-            window.Kakao.init(REST_API_KEY);
-            // access token 설정
-            window.Kakao.Auth.setAccessToken(access_token);
-
-            console.log("send to server");
-            //서버에 access_token 전달
+            console.log(code);
             axios.get('/kakao/signin', {
                 headers: {
-                    'Access_token': access_token
+                    'Authorization_code': code
                 } 
             })
                 .then((res) => {

@@ -6,14 +6,10 @@ import styles from './styles/icon.module.css';
 import { Route, Routes, Link } from 'react-router-dom';
 import AuthContainer from "./store/containers/AuthContainer";
 import SignupContainer from "./store/containers/SignupContainer";
+import Signin from "./components/login/Signin";
 import Profile from "./components/login/Profile";
 
 const App = () => {
-
-  const REST_API_KEY = "223392a6512c6867ae141bab90e937f2";
-  const REDIRECT_URI = "https://3000-c3b8c88d-18cc-4a7b-bc21-cde7aea3fe6d.cs-asia-east1-jnrc.cloudshell.dev/oauth/kakao";
-  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-
 
   return (
     <div>
@@ -22,7 +18,7 @@ const App = () => {
         <Route path="/cart" element={<><CartContainer /></>} exact={true} />
         <Route path="/manage" element={<><OrderManage /></>} exact={true} />
         <Route path="/oauth/kakao" element={<><AuthContainer /></>} exact={true} />
-        <Route path="/signin" element={<><a href={KAKAO_AUTH_URL}><img alt="kakao" src="/icon/kakao_login.png" /></a></>} exact={true} />
+        <Route path="/signin" element={<Signin/>} exact={true} />
         <Route path="/signup" element={<SignupContainer />} exact={true} />
         <Route path="/profile" element={<><Profile /></>} exact={true} />
       </Routes>
