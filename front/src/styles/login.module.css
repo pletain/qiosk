@@ -22,7 +22,7 @@
     font-size: 15px;
     font-weight: 400;
     margin-top: 5px;
-    padding-bottom: 70px;
+    padding-bottom: 200px;
     color: rgba(11, 63, 219, 0.521);
 }
 
@@ -43,6 +43,11 @@
     justify-content: center;
     font-size: 30px;
     font-weight: 600;
+}
+
+#logo {
+    display: block;
+    margin: 0 auto;
 }
 
 .loginbanner {

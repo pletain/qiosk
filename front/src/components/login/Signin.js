@@ -11,6 +11,7 @@ export default function Signin() {
         <div className={UI.body}>
             <div className={UI.title}>QIOSK</div>
             <div className={UI.subtitle}>The most convenient ordering system</div>
+            <img id={UI.logo} alt="iphone" src="/icon/iphone.png" />
             <div className={UI.loginbanner}>
                     <a href={KAKAO_AUTH_URL}><img alt="kakao" src="/icon/kakao_login.png" /></a>
                     {/* <a href=""><img alt="naver" src="icon/naver_login.png" /></a> */}
