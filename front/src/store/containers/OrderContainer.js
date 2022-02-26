@@ -10,7 +10,6 @@ const OrderContainer = () => {
     const dispatch = useDispatch();
 
     const removeAll = useCallback(() => dispatch(cleanCart()), [dispatch]);
-
     return (
         <>
             <Order items={items} table={table} removeAll={removeAll} />

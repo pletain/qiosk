@@ -7,7 +7,6 @@ import { Route, Routes, Link } from 'react-router-dom';
 import AuthContainer from "./store/containers/AuthContainer";
 import SignupContainer from "./store/containers/SignupContainer";
 import Signin from "./components/login/Signin";
-import Profile from "./components/login/Profile";
 
 const App = () => {
 
@@ -20,7 +19,6 @@ const App = () => {
         <Route path="/oauth/kakao" element={<><AuthContainer /></>} exact={true} />
         <Route path="/signin" element={<Signin/>} exact={true} />
         <Route path="/signup" element={<SignupContainer />} exact={true} />
-        <Route path="/profile" element={<><Profile /></>} exact={true} />
       </Routes>
     </div>
   )

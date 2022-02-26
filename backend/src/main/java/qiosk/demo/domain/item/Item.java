@@ -10,6 +10,7 @@ import lombok.Data;
 - 상세 설명
  */
 @Data
+// @Document(collection="items")
 public class Item {
     
     private Long id;

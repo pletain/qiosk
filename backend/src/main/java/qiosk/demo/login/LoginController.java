@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,10 +23,12 @@ import org.springframework.web.client.RestTemplate;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import qiosk.demo.domain.login.JWTService;
 import qiosk.demo.domain.login.KakaoProfile;
+import qiosk.demo.domain.login.LoginResponse;
 import qiosk.demo.domain.login.TokenResponse;
 import qiosk.demo.domain.member.Member;
-import qiosk.demo.domain.member.MemberRepository;
+import qiosk.demo.domain.member.MemberService;
 
 @Controller
 @Slf4j
@@ -33,15 +36,20 @@ import qiosk.demo.domain.member.MemberRepository;
 @RequiredArgsConstructor
 public class LoginController {
 
-    private final MemberRepository memberRepository;
+    // private final MemberRepository memberRepository;
+    private final MemberService memberService;
+    private final JWTService jwtService;
+
+    @Value("${REST_API_KEY}")
+    private String REST_API_KEY;
+    @Value("${REDIRECT_URI}")
+    private String REDIRECT_URI;
+    @Value("${CLIENT_SECRET}")
+    private String CLIENT_SECRET;
 
     @GetMapping("/signin")
     @ResponseBody
-    public ResponseEntity<Member> Signin(@RequestHeader(value = "Authorization_code") String code) {
-        String REST_API_KEY = "223392a6512c6867ae141bab90e937f2";
-        String REDIRECT_URI = "https://3000-c3b8c88d-18cc-4a7b-bc21-cde7aea3fe6d.cs-asia-east1-jnrc.cloudshell.dev/oauth/kakao";
-        String CLIENT_SECRET = "p9iuf6DDf3WydhBHR9YwnDWOngEmozRr";
-
+    public ResponseEntity<LoginResponse> Signin(@RequestHeader(value = "Authorization_code") String code) {
         String Access_token = getToken(code, REST_API_KEY, REDIRECT_URI, CLIENT_SECRET);
 
         RestTemplate restTemplate = new RestTemplate();
@@ -50,7 +58,6 @@ public class LoginController {
         header.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
         HttpEntity<MultiValueMap<String, String>> profilereq = new HttpEntity<>(header);
-
         ResponseEntity<String> res = restTemplate.exchange(
                 "https://kapi.kakao.com/v2/user/me",
                 HttpMethod.POST,
@@ -67,8 +74,9 @@ public class LoginController {
 
         log.info("profile = {}", profile);
         log.info("profile = {}", profile.getId());
+        LoginResponse loginResponse = new LoginResponse();
 
-        if (memberRepository.findById(profile.getId()) == null) {
+        if (memberService.getMember(profile.getId()) == null) {
             Member unregistered_member = new Member();
 
             unregistered_member.setId(profile.getId());
@@ -76,18 +84,23 @@ public class LoginController {
             unregistered_member.setProfile_image(profile.getProperties().getProfile_image());
             log.info("202!");
             log.info("token = {}", Access_token);
-            return new ResponseEntity<>(unregistered_member, HttpStatus.CREATED);
+            loginResponse.setUnregistered_member(unregistered_member);
+
+            return new ResponseEntity<>(loginResponse, HttpStatus.CREATED);
 
         }
         log.info("token = {}", Access_token);
         log.info("200!");
-        return new ResponseEntity<>(memberRepository.findById(profile.getId()), HttpStatus.OK);
+        
+        loginResponse.setAccessToken(jwtService.makeJwtToken(profile.getId()));
+        log.info("jwt = {}", loginResponse);
+        return new ResponseEntity<>(loginResponse, HttpStatus.OK);
     }
 
     @PostMapping("/signup")
     @ResponseBody
     public ResponseEntity<String> Signup(@RequestBody Member member) {
-        memberRepository.save(member);
+        memberService.join(member);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

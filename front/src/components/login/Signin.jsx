@@ -4,7 +4,7 @@ import UI from "../../styles/login.module.css";
 export default function Signin() {
 
     const REST_API_KEY = "223392a6512c6867ae141bab90e937f2";
-    const REDIRECT_URI = "https://3000-c3b8c88d-18cc-4a7b-bc21-cde7aea3fe6d.cs-asia-east1-jnrc.cloudshell.dev/oauth/kakao";
+    const REDIRECT_URI = "https://3000-cs-438668832993-default.cs-asia-east1-jnrc.cloudshell.dev/oauth/kakao";
     const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
     return (

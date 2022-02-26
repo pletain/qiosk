@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import UI from '../styles/ui.module.css';
 import BTN from '../styles/button.module.css';
 import axios from 'axios';
-import { useSnackbar } from 'react-simple-snackbar'
-
+import { useSnackbar } from 'react-simple-snackbar';
+import cookies from 'react-cookies';
 
 const ItemList = ({ add }) => {
+    // const [cookies, setCookie, removeCookie] = useCookies();
+    console.log(cookies.load('accessToken'));
 
     const options = {
         position: 'top-center',
