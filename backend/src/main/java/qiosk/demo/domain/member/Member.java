@@ -9,6 +9,7 @@ public class Member {
     private String name;
     private String phoneNumber;
     private String profile_image;
+    private String AccessToken;
 
     public Member(){}
 

@@ -7,7 +7,7 @@ const AuthContainer = () => {
 
     const dispatch = useDispatch();
 
-    const sendinfo = useCallback(info => dispatch(getNewb(info)), [dispatch]);
+    const sendinfo = useCallback((info) => dispatch(getNewb(info)), [dispatch]);
 
     return (
         <>

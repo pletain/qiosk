@@ -72,9 +72,13 @@ public class LoginController {
             e.printStackTrace();
         }
 
+        String JWT_Token = jwtService.makeJwtToken(profile.getId());
+
         log.info("profile = {}", profile);
         log.info("profile = {}", profile.getId());
+
         LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setAccessToken(JWT_Token);
 
         if (memberService.getMember(profile.getId()) == null) {
             Member unregistered_member = new Member();
@@ -82,6 +86,7 @@ public class LoginController {
             unregistered_member.setId(profile.getId());
             unregistered_member.setName(profile.getProperties().getNickname());
             unregistered_member.setProfile_image(profile.getProperties().getProfile_image());
+            unregistered_member.setAccessToken(JWT_Token);
             log.info("202!");
             log.info("token = {}", Access_token);
             loginResponse.setUnregistered_member(unregistered_member);
@@ -92,7 +97,6 @@ public class LoginController {
         log.info("token = {}", Access_token);
         log.info("200!");
         
-        loginResponse.setAccessToken(jwtService.makeJwtToken(profile.getId()));
         log.info("jwt = {}", loginResponse);
         return new ResponseEntity<>(loginResponse, HttpStatus.OK);
     }

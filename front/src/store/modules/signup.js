@@ -13,6 +13,7 @@ const INITIAL_STATE = {
         name: null,
         phoneNumber: null,
         profile_image: null,
+        accessToken: null,
     }
 }
 

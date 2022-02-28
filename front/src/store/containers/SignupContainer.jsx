@@ -5,6 +5,8 @@ import Signup from '../../components/login/Signup';
 const SignupContainer = () => {
     const data = useSelector(state => state.signup.info);
 
+    console.log("this is signupcontinaer!!!!!!!!!!!");
+
     console.log("state.info:");
     console.log(data);
 

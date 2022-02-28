@@ -12,8 +12,8 @@ import rootReducer from './store/modules';
 import { BrowserRouter } from 'react-router-dom';
 import SnackbarProvider from 'react-simple-snackbar'
 import { CookiesProvider } from 'react-cookie';
-
 // import axios from "axios";
+
 // axios.defaults.withCredentials = true;
 
 const store = createStore(rootReducer, composeWithDevTools());

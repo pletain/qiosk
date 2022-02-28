@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import cookies from 'react-cookies';
 import UI from '../../styles/manage.module.css';
 import BTN from '../../styles/button.module.css';
 
 const Signup = ({ data }) => {
 
     const navigate = useNavigate();
-
-    const { id, name, phoneNumber } = data;
+    const { id, name, phoneNumber, accessToken } = data;
+    console.log(accessToken);
     const [info, setInfo] = useState({
         id: id,
         name: name,
@@ -24,13 +25,29 @@ const Signup = ({ data }) => {
     };
 
     const sendInfo = async () => {
-        
+
         const res = await axios.post(
             "kakao/signup",
             info
         );
         console.log(res);
-        navigate('/', { replace: true })
+        // navigate('/', { replace: true })
+    }
+
+    const getToken = () => {
+        console.log(data);
+        const expires = new Date();
+        expires.setMinutes(expires.getMinutes() + 1);
+        cookies.save('accessToken', accessToken,
+            {
+                path: '/',
+                expires,
+            }
+        );
+        
+        console.log("cookies!");
+        console.log(cookies.load('accessToken'));
+        navigate('/', { replace: true });
     }
 
     return (
@@ -52,7 +69,7 @@ const Signup = ({ data }) => {
 
             <div>
                 <button className={BTN.order} onClick={() => {
-                    sendInfo();
+                    sendInfo(); getToken();
                 }}>가입 완료</button>
             </div>
         </div>
