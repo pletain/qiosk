@@ -47,7 +47,7 @@ const Signup = ({ data }) => {
         
         console.log("cookies!");
         console.log(cookies.load('accessToken'));
-        navigate('/', { replace: true });
+        navigate('/menu', { replace: true });
     }
 
     return (

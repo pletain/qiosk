@@ -8,11 +8,11 @@ const Auth = ({ sendinfo }) => {
     // calllback으로 받은 인가코드
     const code = new URL(window.location.href).searchParams.get("code");
 
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const getToken = async () => {
 
-        try {
+        try { 
             console.log(code);
             axios.get('/kakao/signin', {
                 headers: {
@@ -27,14 +27,14 @@ const Auth = ({ sendinfo }) => {
                         console.log("가입되지 않은 사용자입니다!!!!");
                         console.log(unregistered_member);
                         sendinfo(unregistered_member);
-                        history('/signup', { replace: true });
+                        navigate('/signup', { replace: true });
                     } else if (res.status === 200) {
-                        alert("가입완료함");
+                        // alert("가입완료함");
                         console.log(accessToken);
 
                         try {
                             const expires = new Date();
-                            expires.setMinutes(expires.getMinutes() + 1);
+                            expires.setMinutes(expires.getMinutes() + 10);
                             cookies.save('accessToken', accessToken,
                                 {
                                     path: '/',
@@ -44,13 +44,11 @@ const Auth = ({ sendinfo }) => {
                             );
                             console.log("cookies!");
                             console.log(cookies.load('accessToken'));
+                            navigate('/menu', { replace: true });
                         }
                         catch (err) {
                             console.log(err);
                         }
-
-
-                        history('/', { replace: true });
                     }
                 }).catch((err) => console.log(err))
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import UI from '../styles/ui.module.css';
 import BTN from '../styles/button.module.css';
+import styles from '../styles/icon.module.css';
 import axios from 'axios';
 import { useSnackbar } from 'react-simple-snackbar';
 import cookies from 'react-cookies';
@@ -80,6 +82,7 @@ const ItemList = ({ add }) => {
 
                 })}
             </div>
+            <Link to="/cart" ><img className={styles.cart} alt="cart-icon" src="/icon/shopping-cart.png" /></Link>
         </div>
     );
 };

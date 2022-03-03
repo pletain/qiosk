@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import cookies from 'react-cookies';
 import { useNavigate } from 'react-router-dom';
 import BTN from '../styles/button.module.css'
 
@@ -9,13 +10,15 @@ const Order = ({ items, table, removeAll }) => {
     const handleGoback = () => {
         navigate(-1);
     };
+    const tbnum = cookies.load('tableNum')
 
-    console.log(table);
+    console.log("tttttttttttttttttttt!");
+    console.log(tbnum);
 
     const OrderList = {
         orderId: null,
         clientId: 151,
-        tableNum: table,
+        tableNum: tbnum,
         serving: null,
         payment: null,
         orders: [],

@@ -48,6 +48,7 @@ export const total = () => {
 };
 
 export const recordTable = tbnum => {
+    console.log("recordTable!!!!!!!!");
     return {
         type: RECORD,
         tbnum,

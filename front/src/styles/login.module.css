@@ -53,7 +53,7 @@
 .loginbanner {
     display: flex;
     position: fixed;
-    bottom: 100px;
+    bottom: 5%;
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
