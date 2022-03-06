@@ -5,14 +5,13 @@ import { cleanCart } from '../modules/cart';
 
 const OrderContainer = () => {
     const items = useSelector(state => state.cart);
-    const table = useSelector(state => state.table);
     
     const dispatch = useDispatch();
 
     const removeAll = useCallback(() => dispatch(cleanCart()), [dispatch]);
     return (
         <>
-            <Order items={items} table={table} removeAll={removeAll} />
+            <Order items={items} removeAll={removeAll} />
         </>
     );
 

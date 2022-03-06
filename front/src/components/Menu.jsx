@@ -6,11 +6,15 @@ import styles from '../styles/icon.module.css';
 import axios from 'axios';
 import { useSnackbar } from 'react-simple-snackbar';
 import cookies from 'react-cookies';
+import Badge from '@material-ui/core/Badge';
 
-const ItemList = ({ add }) => {
+const ItemList = ({ add, ItemQuantity }) => {
     // const [cookies, setCookie, removeCookie] = useCookies();
-    console.log(cookies.load('accessToken'));
-
+    // console.log(cookies.load('accessToken'));
+    if(ItemQuantity === undefined){
+        ItemQuantity = 0;
+    }
+    
     const options = {
         position: 'top-center',
         style: {
@@ -27,6 +31,7 @@ const ItemList = ({ add }) => {
 
     const [itemDatas, setItemDatas] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [quantity, setQuantity] = useState(ItemQuantity);
     const [openSnackbar] = useSnackbar(options);
 
     useEffect(() => {
@@ -67,6 +72,7 @@ const ItemList = ({ add }) => {
                     return (
                         <div className={UI.menu} key={id} onClick={() => {
                             add(itemData);
+                            setQuantity(quantity + 1);
                             openSnackbar(itemname + ' 선택하셨습니다.', [2000]);
                         }}>
                             <div className={UI.menuDetail}>
@@ -82,7 +88,20 @@ const ItemList = ({ add }) => {
 
                 })}
             </div>
-            <Link to="/cart" ><img className={styles.cart} alt="cart-icon" src="/icon/shopping-cart.png" /></Link>
+
+            <div className={styles.cartbox}>
+                <Badge color="error" overlap="circular" badgeContent={quantity} max={99}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                >
+                    <Link to="/cart" ><img className={styles.cart} alt="cart-icon" src="/icon/shopping-bag.png" /></Link>
+                </Badge>
+            </div>
+
+
+
         </div>
     );
 };

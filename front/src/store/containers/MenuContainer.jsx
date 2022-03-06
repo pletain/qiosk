@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Menu from '../../components/Menu';
 import { useLocation } from 'react-router';
 import qs from 'qs';
@@ -14,6 +14,7 @@ const MenuContainer = () => {
     const LoggedIn = checkToken();
     const location = useLocation();
     const dispatch = useDispatch();
+    const ItemQuantity = useSelector(state => state.cart.totalQuantity);
 
     const add = useCallback(item => dispatch(addCart(item)), [dispatch]);
     const record = useCallback(tbnum => dispatch(recordTable(tbnum)), [dispatch]);
@@ -46,7 +47,7 @@ const MenuContainer = () => {
 
     return (
         <>
-            <Menu add={add} />
+            <Menu ItemQuantity={ItemQuantity} add={add} />
         </>
     );
 

@@ -2,7 +2,7 @@ import React from 'react';
 import MenuContainer from './store/containers/MenuContainer';
 import CartContainer from './store/containers/CartContainer';
 import OrderManage from './components/manage/OrderManage'
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import AuthContainer from "./store/containers/AuthContainer";
 import SignupContainer from "./store/containers/SignupContainer";
 import Signin from "./components/login/Signin";

@@ -48,7 +48,6 @@ export const total = () => {
 };
 
 export const recordTable = tbnum => {
-    console.log("recordTable!!!!!!!!");
     return {
         type: RECORD,
         tbnum,
@@ -59,24 +58,9 @@ const INITIAL_STATE = {
     cart: [
     ],
     total: 0,
+    totalQuantity: 0,
     table: null,
 };
-
-
-// {
-//     id: 1,
-//     itemname: "가츠동",
-//     price: 7000, 
-//     quantity: 2, 
-//     description: "국내산 '生' 안심 돈까스",
-// },
-// {
-//     id: 2,
-//     itemname: "에비동",
-//     price: 8500, 
-//     quantity: 1, 
-//     description: "국내산 '生' 안심 돈까스",
-// }
 
 const cart = (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -85,36 +69,44 @@ const cart = (state = INITIAL_STATE, action) => {
             if (find === undefined) {
                 return {
                     ...state,
-                    cart: state.cart.concat(action.item)
+                    cart: state.cart.concat(action.item),
+                    totalQuantity: state.totalQuantity + 1
                 };
             } else {
                 return {
                     ...state,
                     cart: state.cart.map(item =>
-                        item.id === action.item.id ? { ...item, quantity: item.quantity + 1 } : item)
+                        item.id === action.item.id ? { ...item, quantity: item.quantity + 1 } : item),
+                    totalQuantity: state.totalQuantity + 1
                 };
             }
         case DELETE_ITEM:
+            const delItem = state.cart.find(item => item.id === action.item.id);
             return {
                 ...state,
-                cart: state.cart.filter(item => item.id !== action.item.id)
+                cart: state.cart.filter(item => 
+                    item.id !== action.item.id),
+                totalQuantity: state.totalQuantity - delItem.quantity
             };
         case INCREMENT:
             return {
                 ...state,
                 cart: state.cart.map(item =>
-                    item.id === action.item.id ? { ...item, quantity: item.quantity + 1 } : item)
+                    item.id === action.item.id ? { ...item, quantity: item.quantity + 1 } : item),
+                    totalQuantity: state.totalQuantity + 1
             };
         case DECREMENT:
             return {
                 ...state,
                 cart: state.cart.map(item =>
-                    item.id === action.item.id ? { ...item, quantity: item.quantity - 1 } : item)
+                    item.id === action.item.id ? { ...item, quantity: item.quantity - 1 } : item),
+                    totalQuantity: state.totalQuantity - 1
             };
         case CLEAN:
             return {
                 ...state,
-                cart: []
+                cart: [],
+                totalQuantity: 0
             };
         case TOTAL:
             let sum = 0;

@@ -4,15 +4,13 @@ import cookies from 'react-cookies';
 import { useNavigate } from 'react-router-dom';
 import BTN from '../styles/button.module.css'
 
-const Order = ({ items, table, removeAll }) => {
+const Order = ({ items, removeAll }) => {
     const [loading, setLoading] = useState(false);
     let navigate = useNavigate();
     const handleGoback = () => {
-        navigate(-1);
+        navigate('/menu', { replace: true });
     };
     const tbnum = cookies.load('tableNum')
-
-    console.log("tttttttttttttttttttt!");
     console.log(tbnum);
 
     const OrderList = {
