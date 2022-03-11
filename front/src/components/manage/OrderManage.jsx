@@ -29,7 +29,6 @@ const OrderComponent = ({ orderData, deleteOrder }) => {
         <div onClick={toggleshow} className={UI.order}>
             <div className={UI.info}>
                 <div className={UI.group}>
-                    <div id={UI.odNum}>{orderId}</div>
                     <div id={UI.tbNum}>{tableNum}번 테이블</div>
                 </div>
                 {(onToggle===false) ?

@@ -80,7 +80,7 @@ public class LoginController {
         LoginResponse loginResponse = new LoginResponse();
         loginResponse.setAccessToken(JWT_Token);
 
-        if (memberService.getMember(profile.getId()) == null) {
+        if (!memberService.getMember(profile.getId()).isPresent()) {
             Member unregistered_member = new Member();
 
             unregistered_member.setId(profile.getId());

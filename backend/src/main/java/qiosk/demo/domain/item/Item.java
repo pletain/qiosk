@@ -1,5 +1,8 @@
 package qiosk.demo.domain.item;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.Data;
 
 /**
@@ -10,10 +13,12 @@ import lombok.Data;
 - 상세 설명
  */
 @Data
-// @Document(collection="items")
+@Document(collection="item")
 public class Item {
     
-    private Long id;
+
+    @Id
+    private String id;
     private String itemname;
     private int price;
     private Integer quantity = 1;

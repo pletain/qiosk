@@ -1,5 +1,7 @@
 package qiosk.demo.domain.member;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +14,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public Member getMember(Integer memberId) {
+    public Optional<Member> getMember(String memberId) {
         return memberRepository.findById(memberId);
     }
 

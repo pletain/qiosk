@@ -2,6 +2,7 @@ package qiosk.demo.orderManage;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +31,8 @@ public class OrderManageController {
     @GetMapping("")
     @ResponseBody
     public List<OrderList> ShowOrders() {
-        List<OrderList> orders = orderRepository.findAllOrder();
-        log.info("log ={}" , orderRepository.findAllOrder());
+        List<OrderList> orders = orderRepository.findAll();
+        log.info("log ={}" , orderRepository.findAll());
         return orders;
     }
 
@@ -42,8 +43,8 @@ public class OrderManageController {
      */
     @DeleteMapping("/delete/{orderId}")
     @ResponseBody
-    public void DelteOrder(@PathVariable Long orderId) {
-        orderRepository.deleteOrder(orderId);
+    public void DelteOrder(@PathVariable ObjectId orderId) {
+        orderRepository.deleteById(orderId);
         // orderRepository.saveOrder(orderList, orderList.getOrders());
         // orderList.getOrders()
         //         .forEach(order -> log.info("clientId={}, order={}", orderList.getClientId(), order.getItemName()));

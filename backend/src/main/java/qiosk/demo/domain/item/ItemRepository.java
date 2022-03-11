@@ -2,12 +2,13 @@ package qiosk.demo.domain.item;
 
 import java.util.List;
 
-public interface ItemRepository {
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-    Item save(Item item);
-    Item findById(Long itemId);
-    List<Item> findAll();
-    void update(Long itemId, Item updateParam);
-    void clearStore();
-    
+public interface ItemRepository extends MongoRepository<Item, String> {
+
+    // public Item save(Item item);
+    // public Item findById(Long itemId);
+    // public List<Item> findAll();
+    // public void update(Long itemId, Item updateParam);
+
 }

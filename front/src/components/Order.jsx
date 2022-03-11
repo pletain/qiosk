@@ -10,12 +10,14 @@ const Order = ({ items, removeAll }) => {
     const handleGoback = () => {
         navigate('/menu', { replace: true });
     };
-    const tbnum = cookies.load('tableNum')
+    const tbnum = cookies.load('tableNum');
+    const clientId = cookies.load('accessToken');
+    console.log(clientId);
     console.log(tbnum);
 
     const OrderList = {
         orderId: null,
-        clientId: 151,
+        clientId: clientId,
         tableNum: tbnum,
         serving: null,
         payment: null,

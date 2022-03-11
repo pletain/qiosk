@@ -34,7 +34,7 @@ const Auth = ({ sendinfo }) => {
 
                         try {
                             const expires = new Date();
-                            expires.setMinutes(expires.getMinutes() + 10);
+                            expires.setMinutes(expires.getMinutes() + 100);
                             cookies.save('accessToken', accessToken,
                                 {
                                     path: '/',

@@ -18,7 +18,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class JWTService {
-    public String makeJwtToken(Integer userId) {
+    public String makeJwtToken(String userId) {
         Date now = new Date();
         return Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE) // (1)
@@ -51,6 +51,13 @@ public class JWTService {
                 .setSigningKey("secret") // (3)
                 .parseClaimsJws(token) // (4)
                 .getBody();
+    }
+
+    public String getUserIdFromJWT(String userId) {
+        return (String) Jwts.parser()
+        .setSigningKey("secret") // (3)
+        .parseClaimsJws(userId) // (4)
+        .getBody().get("id");
     }
 
     private void validationAuthorizationHeader(String header) {
