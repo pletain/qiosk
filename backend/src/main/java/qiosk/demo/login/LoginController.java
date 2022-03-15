@@ -36,15 +36,15 @@ import qiosk.demo.domain.member.MemberService;
 @RequiredArgsConstructor
 public class LoginController {
 
-    // private final MemberRepository memberRepository;
     private final MemberService memberService;
     private final JWTService jwtService;
 
-    @Value("${REST_API_KEY}")
+    
+    @Value("${kakao.REST_API_KEY}")
     private String REST_API_KEY;
-    @Value("${REDIRECT_URI}")
+    @Value("${kakao.REDIRECT_URI}")
     private String REDIRECT_URI;
-    @Value("${CLIENT_SECRET}")
+    @Value("${kakao.CLIENT_SECRET}")
     private String CLIENT_SECRET;
 
     @GetMapping("/signin")
