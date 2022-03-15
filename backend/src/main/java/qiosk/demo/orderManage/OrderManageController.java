@@ -2,7 +2,6 @@ package qiosk.demo.orderManage;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +22,7 @@ public class OrderManageController {
 
     private final OrderRepository orderRepository; 
 
-    // 주문 관리 홈
+    // 주문 관리 페이지
     /**
      * 
      * @return 주문 리스트 정보 반환
@@ -37,17 +36,10 @@ public class OrderManageController {
     }
 
     //주문 삭제
-    /**
-     * 
-     * @param tableNum
-     */
     @DeleteMapping("/delete/{orderId}")
     @ResponseBody
-    public void DelteOrder(@PathVariable ObjectId orderId) {
+    public void DelteOrder(@PathVariable String orderId) {
         orderRepository.deleteById(orderId);
-        // orderRepository.saveOrder(orderList, orderList.getOrders());
-        // orderList.getOrders()
-        //         .forEach(order -> log.info("clientId={}, order={}", orderList.getClientId(), order.getItemName()));
     }
 
 }

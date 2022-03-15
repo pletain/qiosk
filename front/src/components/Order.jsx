@@ -15,12 +15,15 @@ const Order = ({ items, removeAll }) => {
     console.log(clientId);
     console.log(tbnum);
 
+    let time = new Date().toTimeString().split(" ")[0];
+    let curTime = time.substring(0, time.length - 3);
+    console.log(curTime);
+
     const OrderList = {
-        orderId: null,
-        clientId: clientId,
+        _id: null,
         tableNum: tbnum,
-        serving: null,
-        payment: null,
+        clientId: clientId,
+        orderTime: curTime,
         orders: [],
     }
 

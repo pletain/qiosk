@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const OrderComponent = ({ orderData, deleteOrder }) => {
     let totalPrice = 0
-    const { orderId, time, tableNum, orders } = orderData;
+    const { _id, orderTime, tableNum, orders } = orderData;
     const [onToggle, setOnToggle] = useState(false);
 
     const toggleshow = () => {
@@ -13,10 +13,10 @@ const OrderComponent = ({ orderData, deleteOrder }) => {
     }
 
     const deleteData = () => {
-        const URL = "/ordermanage/delete/" + orderId;
+        const URL = "/ordermanage/delete/" + _id;
         axios.delete(URL,)
         .then(response => {
-            deleteOrder(orderId);
+            deleteOrder(_id);
             if(response.data != null) {
                 alert("주문이 처리됐습니다.");
             }
@@ -24,7 +24,8 @@ const OrderComponent = ({ orderData, deleteOrder }) => {
     };
 
     console.log(orderData);
-
+    console.log(orderTime);
+    
     return (
         <div onClick={toggleshow} className={UI.order}>
             <div className={UI.info}>
@@ -32,8 +33,8 @@ const OrderComponent = ({ orderData, deleteOrder }) => {
                     <div id={UI.tbNum}>{tableNum}번 테이블</div>
                 </div>
                 {(onToggle===false) ?
-                    <div className={BTN.capsule} id={UI.time}>{time}</div> 
-                    : <div onClick={deleteData} className={BTN.capsule} id={UI.time}>결제처리</div>
+                    <div className={BTN.capsule} id={UI.time}>{orderTime}</div> 
+                    : <div onClick={deleteData} className={BTN.capsule} id={UI.process}>결제처리</div>
                 }
                 {/* <div className={BTN.capsule} id={UI.time}>{time}</div> */}
             </div>
@@ -70,10 +71,10 @@ const OrderMange = () => {
     const [orderDatas, setOrderDatas] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const deleteOrder = (orderId) => {
+    const deleteOrder = (_id) => {
         setOrderDatas(
-            orderDatas.filter((orderData) => 
-            orderData.orderId !== orderId)
+            orderDatas.filter( (orderData) => 
+            orderData._id !== _id)
         );
     }
 
@@ -109,7 +110,7 @@ const OrderMange = () => {
     return (
         <div className={UI.orderMange}>
             <div className={UI.navbar}>
-                <div className={UI.title}>주문내역</div>
+                <div className={UI.title}>📋 주문내역</div>
             </div>
 
             <div className={UI.orderBody}>
