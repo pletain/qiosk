@@ -1,4 +1,4 @@
-package qiosk.demo.orderManage;
+package qiosk.demo.domain.order.controller;
 
 import java.util.List;
 
@@ -10,12 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import qiosk.demo.domain.order.OrderList;
 import qiosk.demo.domain.order.OrderRepository;
 
 @Controller
-@Slf4j
 @RequestMapping("/ordermanage")
 @RequiredArgsConstructor
 public class OrderManageController {
@@ -31,7 +29,6 @@ public class OrderManageController {
     @ResponseBody
     public List<OrderList> ShowOrders() {
         List<OrderList> orders = orderRepository.findAll();
-        log.info("log ={}" , orderRepository.findAll());
         return orders;
     }
 

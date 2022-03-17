@@ -18,10 +18,10 @@ public class Member {
 
     public Member(){}
 
-    public Member(String id, String name, String phoneNumber) {
+    public Member(String id, String name, String profile_image, String AccessToken) {
         this.id = id;
         this.name = name;
-        this.phoneNumber = phoneNumber;
+        this.profile_image = profile_image;
+        this.AccessToken = AccessToken;
     }
-    
 }

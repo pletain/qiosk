@@ -15,7 +15,6 @@ import lombok.Data;
 @Data
 @Document(collection="item")
 public class Item {
-    
 
     @Id
     private String id;

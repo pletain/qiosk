@@ -1,4 +1,4 @@
-package qiosk.demo.domain.login;
+package qiosk.demo.global;
 
 import java.io.IOException;
 import java.time.Duration;

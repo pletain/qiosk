@@ -13,20 +13,20 @@ const Auth = ({ sendinfo }) => {
     const getToken = async () => {
 
         try { 
-            console.log(code);
+            console.log(code); 
             axios.get('/kakao/signin', {
                 headers: {
                     'Authorization_code': code
                 }
             })
                 .then((res) => {
-                    const { accessToken, unregistered_member } = res.data;
+                    const { accessToken, newb } = res.data;
                     if (res.status === 201) {
                         alert("가입되지 않은 사용자!");
                         console.log(res);
                         console.log("가입되지 않은 사용자입니다!!!!");
-                        console.log(unregistered_member);
-                        sendinfo(unregistered_member);
+                        console.log(newb);
+                        sendinfo(newb);
                         navigate('/signup', { replace: true });
                     } else if (res.status === 200) {
                         // alert("가입완료함");

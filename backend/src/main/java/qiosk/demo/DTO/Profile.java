@@ -1,4 +1,4 @@
-package qiosk.demo.domain.login;
+package qiosk.demo.DTO;
 
 import lombok.Data;
 

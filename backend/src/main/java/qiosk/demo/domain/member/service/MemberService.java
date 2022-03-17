@@ -1,8 +1,11 @@
-package qiosk.demo.domain.member;
+package qiosk.demo.domain.member.service;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+
+import qiosk.demo.domain.member.Member;
+import qiosk.demo.domain.member.MemberRepository;
 
 @Service
 public class MemberService {

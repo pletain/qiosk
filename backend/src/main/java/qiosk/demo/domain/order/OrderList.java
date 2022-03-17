@@ -2,6 +2,7 @@ package qiosk.demo.domain.order;
 
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
@@ -10,6 +11,7 @@ import lombok.Data;
 @Document(collection="orders")
 public class OrderList {
 
+    @Id
     String _id;
 
     Long tableNum;
