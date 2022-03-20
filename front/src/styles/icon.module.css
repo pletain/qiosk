@@ -7,6 +7,19 @@
     box-shadow: none;
 }
 
+.spinner {
+    height: 5vh;
+}
+
+.board {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 15vh;
+}
+
 .cartbox {
     display: flex;
     justify-content: center;
@@ -27,4 +40,23 @@
     align-items: flex-start;
     width: 20px;
     height: 20px;
+}
+
+.navBack{
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px 20px;
+    color: white;
+    background-color: #007bff;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.navHome{
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px 20px;
+    color: white;
+    background-color: #6b6b6b;
+    border-radius: 5px;
 }

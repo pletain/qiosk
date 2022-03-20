@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Cart from '../../components/Cart';
-import Order from '../../components/Order';
+import Cart from '../../components/order/Cart';
+import Order from '../../components/order/Order';
 import { deleteCart, increment, decrement, cleanCart } from '../modules/cart';
 
 const CartContainer = () => {

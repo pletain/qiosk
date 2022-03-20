@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Menu from '../../components/Menu';
+import Menu from '../../components/order/Menu';
 import { useLocation } from 'react-router';
 import qs from 'qs';
 import { addCart, recordTable } from '../modules/cart';

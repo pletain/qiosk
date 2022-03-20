@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Order from '../../components/Order';
+import Order from '../../components/order/Order';
 import { cleanCart } from '../modules/cart';
 
 const OrderContainer = () => {
