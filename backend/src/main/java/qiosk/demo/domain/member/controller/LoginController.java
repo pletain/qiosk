@@ -34,6 +34,7 @@ public class LoginController {
 
         // 사용자 정보 가져오기
         KakaoProfile profile = loginService.getProfile(code);
+        
         String user_Id = profile.getId();
         String user_Name = profile.getProperties().getNickname();
         String user_PFP = profile.getProperties().getProfile_image();

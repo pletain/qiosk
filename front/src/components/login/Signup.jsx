@@ -6,21 +6,6 @@ import SetToken from '../../services/SetToken';
 import UI from '../../styles/manage.module.css';
 import BTN from '../../styles/button.module.css';
 
-const syncInfo = e => {
-    const { value, name } = e.target;
-    setInfo({
-        ...info,
-        [name]: value
-    });
-};
-
-const sendInfo = async () => {
-    const res = await axios.post(
-        "kakao/signup",
-        info
-    );
-}
-
 const Signup = ({ data }) => {
     const navigate = useNavigate();
     const { id, name, phoneNumber, accessToken } = data;
@@ -30,6 +15,21 @@ const Signup = ({ data }) => {
         name: name,
         phoneNumber: phoneNumber,
     });
+
+    const syncInfo = e => {
+        const { value, name } = e.target;
+        setInfo({
+            ...info,
+            [name]: value
+        });
+    };
+
+    const sendInfo = async () => {
+        const res = await axios.post(
+            "kakao/signup",
+            info
+        );
+    }
 
     return (
         <div className={UI.orderMange}>

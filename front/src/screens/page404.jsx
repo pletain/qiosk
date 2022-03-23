@@ -15,8 +15,8 @@ export default function page404() {
 
   return (
     <div className={UI.board}>
-      <img className={UI.spinner} alt="spinner" src="/icon/sad.png" />
-      <h3>요청하신 페이지는 찾을 수 없습니다❗</h3>
+      <img className={UI.sad} alt="sad" src="/icon/sad.png" />
+      <h3>요청하신 페이지를 찾을 수 없습니다</h3>
       <div>
         <a className={UI.navBack} onClick={() => handleGoHome()}>🏠주문하기</a>
         <a className={UI.navHome} onClick={() => handleGoBack()}>👈뒤로가기</a>

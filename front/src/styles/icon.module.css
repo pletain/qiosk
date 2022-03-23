@@ -11,6 +11,25 @@
     height: 5vh;
 }
 
+.qrCheck {
+    height: 10vh;
+}
+
+.title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 1.1em;
+}
+
+.sad {
+    height: 5vh;
+}
+
 .board {
     height: 85vh;
     display: flex;

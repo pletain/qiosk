@@ -5,10 +5,10 @@ import BTN from '../../styles/button.module.css';
 
 
 const CartItem = ({ item, remove, onIncrease, onDecrease }) => {
-    const { id, itemname, price, quantity } = item;
+    const { itemname, price, quantity } = item;
 
     return (
-        item && <div className={UI.item} key={id}>
+        item && <div className={UI.item}>
             <div className={UI.info}>
                 <h3>{itemname} x {quantity}</h3>
                 <span className={UI.delete} onClick={() => remove(item)}>삭제</span>
@@ -32,9 +32,7 @@ const CartItem = ({ item, remove, onIncrease, onDecrease }) => {
 const Cart = ({ items, remove, removeAll, onIncrease, onDecrease }) => {
 
     let navigate = useNavigate();
-
-    console.log("test");
-    console.log(BTN);
+    
     const handleGoback = () => {
         navigate(-1);
     };
@@ -50,21 +48,21 @@ const Cart = ({ items, remove, removeAll, onIncrease, onDecrease }) => {
     if (items.cart.length === 0) {
         return (
             <div>
-                <table className={UI.navbar}>
-                    <td className={UI.back}>
+                <div className={UI.navbar}>
+                    <div className={UI.back}>
                         <div className={UI.space} />
                         
                             <img alt="뒤로가기" onClick={handleGoback} width="25" height="25" align="center" src="/icon/left-arrow.png" />
                         
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         장바구니
-                    </td>
-                    <td className={UI.clear}>
+                    </div>
+                    <div className={UI.clear}>
                         <img onClick={() => removeAll()} width="25" height="25" alt="전체삭제" src="/icon/bin.png" />
                         <div className={UI.space} />
-                    </td>
-                </table>
+                    </div>
+                </div>
                 <div className={UI.emptyObject}>
                     <img alt="empty-cart" width="100" src="/icon/empty-cart.png" />
                     <h3>장바구니가 비었습니다.</h3>
@@ -76,24 +74,25 @@ const Cart = ({ items, remove, removeAll, onIncrease, onDecrease }) => {
     console.log(items.cart);
     return (
         <div>
-            <table className={UI.navbar}>
-                <td className={UI.back}>
+            <div className={UI.navbar}>
+                <div className={UI.back}>
                     <div className={UI.space} />
                     
                         <img alt="뒤로가기" onClick={handleGoback} width="25" height="25" align="center" src="/icon/left-arrow.png" />
                     
-                </td>
-                <td>
+                </div>
+                <div>
                     장바구니
-                </td>
-                <td className={UI.clear}>
+                </div>
+                <div className={UI.clear}>
                     <img onClick={() => removeAll()} width="25" height="25" alt="전체삭제" src="/icon/bin.png" />
                     <div className={UI.space} />
-                </td>
-            </table>
+                </div>
+            </div>
             <div className={UI.orderList}>
                 {items.cart.map((item) => (
                     <CartItem
+                        key={item.id}
                         item={item}
                         remove={remove}
                         onIncrease={onIncrease}

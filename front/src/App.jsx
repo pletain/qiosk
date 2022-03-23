@@ -6,7 +6,8 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import AuthContainer from "./store/containers/AuthContainer";
 import SignupContainer from "./store/containers/SignupContainer";
 import Signin from "./components/login/Signin";
-import Error404 from "./screens/page404";
+import Page404 from "./screens/page404";
+import InvalidTable from "./screens/invalidTable";
 
 const App = () => {
 
@@ -19,7 +20,8 @@ const App = () => {
         <Route path="/oauth/kakao" element={<><AuthContainer /></>}/>
         <Route path="/signin" element={<Signin/>}/>
         <Route path="/signup" element={<SignupContainer />}/>
-        <Route path="/*" element={<Error404 />}/>
+        <Route path="/unselected" element={<InvalidTable />}/>
+        <Route path="/*" element={<Page404 />}/>
       </Routes>
     </div>
   )

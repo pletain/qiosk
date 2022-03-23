@@ -17,6 +17,7 @@ public class OrderList {
     Long tableNum;
     String orderTime;
     String clientId;
+    String authorization;
 
     private List<Order> orders;
 }

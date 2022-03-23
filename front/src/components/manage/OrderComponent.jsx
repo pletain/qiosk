@@ -42,7 +42,7 @@ const OrderComponent = ({ orderData, deleteOrder }) => {
                     totalPrice += price * quantity;
 
                     return (
-                        <div className={UI.orderDetail}>
+                        <div key={itemName} className={UI.orderDetail}>
                             <div>{itemName} x {quantity}</div>
                             <div>{price * quantity}원</div>
                         </div>

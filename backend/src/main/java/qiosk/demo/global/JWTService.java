@@ -5,10 +5,7 @@ import java.time.Duration;
 import java.util.Date;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
@@ -18,32 +15,32 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class JWTService {
+    //JWT 생성
     public String makeJwtToken(String userId) {
         Date now = new Date();
         return Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE) // (1)
                 .setIssuer("lavin") // (2)
                 .setIssuedAt(now) // (3)
-                .setExpiration(new Date(now.getTime() + Duration.ofMinutes(30).toMillis())) // (4)
+                .setExpiration(new Date(now.getTime() + Duration.ofMinutes(1).toMillis())) // (4)
                 .claim("id", userId) // (5)
                 // .claim("email", "ajufresh@gmail.com")
                 .signWith(SignatureAlgorithm.HS256, "secret") // (6)
                 .compact();
     }
     
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response)
+    //JWT 토큰 파싱 -> 유효성 확인
+    public String doFilterInternal(String authorizationHeader)
             throws IOException, ServletException {
-        String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         Claims claims = parseJwtToken(authorizationHeader);
-        getUserIdFromJWT(claims);
-
+        return getUserIdFromJWT(claims);
     }
 
-    public static String getUserIdFromJWT(Claims claims) {
+    protected static String getUserIdFromJWT(Claims claims) {
         return (String) claims.get("id");
     }
 
-    public Claims parseJwtToken(String authorizationHeader) {
+    protected Claims parseJwtToken(String authorizationHeader) {
         validationAuthorizationHeader(authorizationHeader); // (1)
         String token = extractToken(authorizationHeader); // (2)
 
@@ -51,13 +48,6 @@ public class JWTService {
                 .setSigningKey("secret") // (3)
                 .parseClaimsJws(token) // (4)
                 .getBody();
-    }
-
-    public String getUserIdFromJWT(String userId) {
-        return (String) Jwts.parser()
-        .setSigningKey("secret") // (3)
-        .parseClaimsJws(userId) // (4)
-        .getBody().get("id");
     }
 
     private void validationAuthorizationHeader(String header) {

@@ -21,23 +21,29 @@ const MenuContainer = () => {
 
     useEffect(() => {
         const sch = location.search;
-        console.log(sch);
-
         const queryData = qs.parse(location.search, { ignoreQueryPrefix: true });
         const tbnum = queryData.tbnum;
-        console.log(queryData);
-        console.log(tbnum);
+        const pretbnum = cookies.load('tableNum');
+
         const expires = new Date();
-        expires.setMinutes(expires.getMinutes() + 10);
-        if (tbnum) {
+        expires.setMinutes(expires.getMinutes() + 30);
+        
+        if (!isNaN(Number(tbnum))) {
             cookies.save('tableNum', tbnum,
                 {
                     path: '/',
-                    expires,
+                    expires
                 }
             );
+            navigate('/menu', { replace: true });   
+        }
+        else if (isNaN(Number(pretbnum))) {
+            navigate('/unselected', { replace: true });
+        }
+        else {
             navigate('/menu', { replace: true });
         }
+
         if (LoggedIn === undefined) {
             record(tbnum);
             alert("로그인이 필요한 서비스입니다.");

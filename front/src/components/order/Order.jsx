@@ -7,13 +7,17 @@ import BTN from '../../styles/button.module.css'
 const Order = ({ items, removeAll }) => {
     const [loading, setLoading] = useState(false);
     let navigate = useNavigate();
+
     const handleGoback = () => {
         navigate('/menu', { replace: true });
     };
+    const handleGoSignin = () => {
+        navigate('/signin', { replace: true });
+    }
+
+
     const tbnum = cookies.load('tableNum');
-    const clientId = cookies.load('accessToken');
-    console.log(clientId);
-    console.log(tbnum);
+    const authorization = cookies.load('accessToken');
 
     let time = new Date().toTimeString().split(" ")[0];
     let curTime = time.substring(0, time.length - 3);
@@ -22,7 +26,7 @@ const Order = ({ items, removeAll }) => {
     const OrderList = {
         _id: null,
         tableNum: tbnum,
-        clientId: clientId,
+        authorization: 'Bearer ' + authorization,
         orderTime: curTime,
         orders: [],
     }
@@ -40,10 +44,20 @@ const Order = ({ items, removeAll }) => {
             setLoading(true);
             try {
                 console.log(OrderList);
-                await axios.post('/order', OrderList);
-                alert("주문이 완료됐습니다!");
+                await axios.post('/order', OrderList)
+                    .then((res) => {
+                        console.log(res);
+                        if(res.status === 200) {
+                            alert("주문이 완료됐습니다!");
+                            handleGoback();
+                        }
+                    })
             } catch (e) {
                 console.log(e);
+                if (e.response.status === 401) {
+                    alert("인증이 만료됐습니다. 다시 로그인 해주세요.");
+                    handleGoSignin();
+                }
             }
             setLoading(false);
         };
@@ -51,11 +65,11 @@ const Order = ({ items, removeAll }) => {
     }
 
     if (loading) {
-        return <div>대기 중...</div>
+        return <div><img alt="불러오는중..." width="25" align="center" src="/icon/loading.gif" /></div>
     }
 
     return (
-            <button className={BTN.order} onClick={() => { sendOrder(); removeAll(); handleGoback(); }}>주문하기</button>
+            <button className={BTN.order} onClick={() => { removeAll(); sendOrder();}}>주문하기</button>
     );
 };
 

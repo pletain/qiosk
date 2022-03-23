@@ -51,7 +51,8 @@ const OrderMange = () => {
                     <h3>접수된 주문이 없습니다</h3>
                 </div>
                 : <>{orderDatas.map((orderData) => (
-                    <OrderComponent
+                    <OrderComponent 
+                        key={orderData._id} 
                         orderData={orderData}
                         deleteOrder={deleteOrder}
                     />
