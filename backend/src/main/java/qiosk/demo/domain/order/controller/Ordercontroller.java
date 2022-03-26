@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,8 +37,8 @@ public class Ordercontroller {
     // 주문 페이지
     @GetMapping("")
     @ResponseBody
-    public List<Item> Items() {
-        List<Item> items = itemRepository.findAll();
+    public List<Item> Items(@RequestHeader(value = "storeCode") String storeCode) {
+        List<Item> items = itemRepository.findByStoreCode(storeCode);
         return items;
     }
 

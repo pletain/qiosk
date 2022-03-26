@@ -23,25 +23,37 @@ const MenuContainer = () => {
         const sch = location.search;
         const queryData = qs.parse(location.search, { ignoreQueryPrefix: true });
         const tbnum = queryData.tbnum;
+        const storecode = queryData.storecode;
         const pretbnum = cookies.load('tableNum');
+        const prestorecode = cookies.load('storeCode');
+
+        console.log(queryData);
+        console.log(storecode);
 
         const expires = new Date();
         expires.setMinutes(expires.getMinutes() + 30);
         
-        if (!isNaN(Number(tbnum))) {
-            cookies.save('tableNum', tbnum,
+        if (!isNaN(Number(tbnum)) && storecode !== undefined) {
+            try {
+                cookies.save('tableNum', tbnum,
                 {
                     path: '/',
                     expires
                 }
             );
-            navigate('/menu', { replace: true });   
+            cookies.save('storeCode', storecode, 
+                {
+                path: '/',
+                expires
+                }
+            );
+            } catch (e) {
+                console.error(e);
+            }
+            window.location.replace("/menu");
         }
-        else if (isNaN(Number(pretbnum))) {
+        else if (isNaN(Number(pretbnum)) || prestorecode === undefined) {
             navigate('/unselected', { replace: true });
-        }
-        else {
-            navigate('/menu', { replace: true });
         }
 
         if (LoggedIn === undefined) {

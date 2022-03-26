@@ -22,7 +22,7 @@ public class JWTService {
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE) // (1)
                 .setIssuer("lavin") // (2)
                 .setIssuedAt(now) // (3)
-                .setExpiration(new Date(now.getTime() + Duration.ofMinutes(1).toMillis())) // (4)
+                .setExpiration(new Date(now.getTime() + Duration.ofMinutes(30).toMillis())) // (4)
                 .claim("id", userId) // (5)
                 // .claim("email", "ajufresh@gmail.com")
                 .signWith(SignatureAlgorithm.HS256, "secret") // (6)

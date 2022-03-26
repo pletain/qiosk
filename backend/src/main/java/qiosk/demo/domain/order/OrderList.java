@@ -14,6 +14,7 @@ public class OrderList {
     @Id
     String _id;
 
+    String storeCode;
     Long tableNum;
     String orderTime;
     String clientId;

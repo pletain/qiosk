@@ -17,14 +17,17 @@ const Order = ({ items, removeAll }) => {
 
 
     const tbnum = cookies.load('tableNum');
+    const storeCode = cookies.load('storeCode');
     const authorization = cookies.load('accessToken');
 
     let time = new Date().toTimeString().split(" ")[0];
     let curTime = time.substring(0, time.length - 3);
     console.log(curTime);
+    console.log(storeCode);
 
     const OrderList = {
         _id: null,
+        storeCode: storeCode,
         tableNum: tbnum,
         authorization: 'Bearer ' + authorization,
         orderTime: curTime,

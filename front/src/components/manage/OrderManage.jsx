@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router';
+import qs from 'qs';
 
 import UI from '../../styles/ui.module.css';
 import axios from 'axios';
@@ -9,6 +11,8 @@ import OrderComponent from './OrderComponent';
 const OrderMange = () => {
     const [orderDatas, setOrderDatas] = useState([]);
     const [loading, setLoading] = useState(false);
+    const location = useLocation();
+
 
     const deleteOrder = (_id) => {
         setOrderDatas(
@@ -18,9 +22,16 @@ const OrderMange = () => {
     }
 
     const fetchData = async () => {
+        const sch = location.search;
+        const queryData = qs.parse(location.search, { ignoreQueryPrefix: true });
+        const storeCode = queryData.storecode;
+
         setLoading(true);
         try {
-            const response = await axios.get('/ordermanage',);
+            const response = await axios.get('/ordermanage', {
+                headers: {
+                    'storeCode': storeCode
+                }});
             setOrderDatas(response.data);
         } catch (e) {
             console.log(e);

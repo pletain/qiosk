@@ -8,7 +8,7 @@ import { useSnackbar } from 'react-simple-snackbar';
 import cookies from 'react-cookies';
 import Badge from '@material-ui/core/Badge';
 
-const ItemList = ({ add, ItemQuantity }) => {
+const Menu = ({ add, ItemQuantity }) => {
     // const [cookies, setCookie, removeCookie] = useCookies();
     // console.log(cookies.load('accessToken'));
     
@@ -36,10 +36,15 @@ const ItemList = ({ add, ItemQuantity }) => {
     const [openSnackbar] = useSnackbar(options);
 
     useEffect(() => {
+        const storeCode = cookies.load('storeCode');
+        console.log(storeCode);
         const fetchData = async () => {
             setLoading(true);
             try {
-                const response = await axios.get('/order',);
+                const response = await axios.get('/order', {
+                headers: {
+                    'storeCode': storeCode
+                }});
                 setItemDatas(response.data);
             } catch (e) {
                 console.log(e);
@@ -107,4 +112,4 @@ const ItemList = ({ add, ItemQuantity }) => {
     );
 };
 
-export default ItemList;
+export default Menu;

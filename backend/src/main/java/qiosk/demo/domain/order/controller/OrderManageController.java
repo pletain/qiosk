@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,8 +28,8 @@ public class OrderManageController {
      */ 
     @GetMapping("")
     @ResponseBody
-    public List<OrderList> ShowOrders() {
-        List<OrderList> orders = orderRepository.findAll();
+    public List<OrderList> ShowOrders(@RequestHeader(value = "storeCode") String storeCode) {
+        List<OrderList> orders = orderRepository.findByStoreCode(storeCode);
         return orders;
     }
 

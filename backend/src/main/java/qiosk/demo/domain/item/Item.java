@@ -21,16 +21,18 @@ public class Item {
     private String itemname;
     private int price;
     private Integer quantity = 1;
+    private String storeCode;
     private String description;
     private String imgsrc;
 
     public Item(){}
 
-    public Item(String itemname, int price, String description, String imgsrc) {
+    public Item(String itemname, int price, String description, String imgsrc, String storeCode) {
         this.itemname = itemname;
         this.price = price;
         this.description = description;
         this.imgsrc = imgsrc;
+        this.storeCode = storeCode;
     }
 
 
