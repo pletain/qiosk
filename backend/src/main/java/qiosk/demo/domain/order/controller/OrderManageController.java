@@ -13,22 +13,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.RequiredArgsConstructor;
 import qiosk.demo.domain.order.OrderList;
 import qiosk.demo.domain.order.OrderRepository;
+import qiosk.demo.domain.order.service.OrderService;
 
 @Controller
 @RequestMapping("/ordermanage")
 @RequiredArgsConstructor
 public class OrderManageController {
 
-    private final OrderRepository orderRepository; 
+    private final OrderRepository orderRepository;
+    private final OrderService orderService;
 
     // 주문 관리 페이지
     /**
      * 
      * @return 주문 리스트 정보 반환
      */ 
-    @GetMapping("")
+    @GetMapping("/order")
     @ResponseBody
     public List<OrderList> ShowOrders(@RequestHeader(value = "storeCode") String storeCode) {
+        List<OrderList> orders = orderService.getOrderList(storeCode);
+        return orders;
+    }
+
+        // 주문 관리 페이지
+    /**
+     * 
+     * @return 주문 리스트 정보 반환
+     */ 
+    @GetMapping("/menu")
+    @ResponseBody
+    public List<OrderList> ShowMenu(@RequestHeader(value = "storeCode") String storeCode) {
         List<OrderList> orders = orderRepository.findByStoreCode(storeCode);
         return orders;
     }

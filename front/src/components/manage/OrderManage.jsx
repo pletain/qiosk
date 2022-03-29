@@ -28,7 +28,7 @@ const OrderMange = () => {
 
         setLoading(true);
         try {
-            const response = await axios.get('/ordermanage', {
+            const response = await axios.get('/ordermanage/order', {
                 headers: {
                     'storeCode': storeCode
                 }});
