@@ -1,5 +1,7 @@
 package qiosk.demo.domain.item.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import qiosk.demo.domain.item.Item;
@@ -12,6 +14,14 @@ public class ItemService {
 
     public ItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
+    }
+
+    public List<Item> getItems(String storeCode) {
+        return itemRepository.findByStoreCode(storeCode);
+    }
+
+    public void addItems(Item itme) {
+        itemRepository.save(itme);
     }
 
     public void runTest(){
