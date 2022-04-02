@@ -20,10 +20,13 @@ public class Item {
     private String id;
     private String itemname;
     private int price;
-    private Integer quantity = 1;
-    private String storeCode;
     private String description;
     private String imgsrc;
+    
+    private boolean soldOut = false;
+    private boolean exposure = true;
+    
+    private String storeCode;
 
     public Item(){}
 
