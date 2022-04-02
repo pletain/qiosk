@@ -57,10 +57,4 @@ public class Ordercontroller {
         }
     }
 
-    // private void checkIfRefreshTokenValid(String requiredValue, String givenRefreshToken) throws JwtException {
-    //     String givenValue = String.valueOf(jwtTokenProvider.getClaimsFromJwtToken(givenRefreshToken).getBody().get("value"));
-    //     if (!givenValue.equals(requiredValue))
-    //         throw new InvalidRequestParameterException("Invalid refreshToken");
-    // }
-
 }
