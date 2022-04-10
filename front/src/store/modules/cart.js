@@ -67,6 +67,7 @@ const cart = (state = INITIAL_STATE, action) => {
         case ADD_ITEM:
             const find = state.cart.find(item => item.id === action.item.id);
             if (find === undefined) {
+                action.item.quantity = 1;
                 return {
                     ...state,
                     cart: state.cart.concat(action.item),

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import UI from '../../styles/ui.module.css';
-import BTN from '../../styles/button.module.css';
+import UI from '../../../styles/ui.module.css';
+import BTN from '../../../styles/button.module.css';
 
 const OrderComponent = ({ orderData, deleteOrder }) => {
-    let totalPrice = 0
+    let totalPrice = 0;
+    console.log(orderData);
     const { _id, orderTime, tableNum, orders } = orderData;
     const [onToggle, setOnToggle] = useState(false);
 
@@ -27,7 +28,7 @@ const OrderComponent = ({ orderData, deleteOrder }) => {
     return (
         <div onClick={toggleshow} className={UI.order}>
             <div className={UI.info}>
-            <div className={UI.tbNum}>{tableNum}번 테이블</div>
+            <div className={UI.tbNum}>📌{tableNum}번 테이블</div>
                 {(onToggle === false) ?
                     <div className={`${BTN.capsule} ${UI.time}`}>{orderTime}</div>
                     : <div className={`${BTN.capsule} ${UI.process}`} onClick={deleteData}>결제처리</div>

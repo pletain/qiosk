@@ -9,8 +9,6 @@ import cookies from 'react-cookies';
 import Badge from '@material-ui/core/Badge';
 
 const Menu = ({ add, ItemQuantity }) => {
-    // const [cookies, setCookie, removeCookie] = useCookies();
-    // console.log(cookies.load('accessToken'));
     
     if(ItemQuantity === undefined){
         ItemQuantity = 0;

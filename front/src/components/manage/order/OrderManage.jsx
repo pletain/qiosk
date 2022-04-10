@@ -2,22 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
 import qs from 'qs';
 
-import UI from '../../styles/ui.module.css';
+import UI from '../../../styles/ui.module.css';
 import axios from 'axios';
 
-import Loading from '../../screens/loading';
+import Loading from '../../../screens/loading';
 import OrderComponent from './OrderComponent';
 
 const OrderMange = () => {
     const [orderDatas, setOrderDatas] = useState([]);
     const [loading, setLoading] = useState(false);
     const location = useLocation();
-
+    const URL = "/ordermanage/order";
 
     const deleteOrder = (_id) => {
         setOrderDatas(
-            orderDatas.filter((orderData) =>
-                orderData._id !== _id)
+            orderDatas.filter((orderData) => 
+            orderData._id !== _id)
         );
     }
 
@@ -28,11 +28,12 @@ const OrderMange = () => {
 
         setLoading(true);
         try {
-            const response = await axios.get('/ordermanage/order', {
+            const response = await axios.get(URL, {
                 headers: {
                     'storeCode': storeCode
                 }});
             setOrderDatas(response.data);
+            console.log(response.data);
         } catch (e) {
             console.log(e);
         }
@@ -50,7 +51,7 @@ const OrderMange = () => {
     }
 
     return (
-        <div className={`${UI.body} ${UI.orderManage} `}>
+        <div className={`${UI.body} ${UI.manage} `}>
             <div className={UI.navbar}>
                 주문내역
             </div>

@@ -1,6 +1,7 @@
 package qiosk.demo.domain.item.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,22 @@ public class ItemService {
         return itemRepository.findByStoreCode(storeCode);
     }
 
+    public Optional<Item> getItem(String itemId) {
+        return itemRepository.findById(itemId);
+    }
+
     public void addItems(Item itme) {
         itemRepository.save(itme);
+    }
+
+    public void updateItem(String itemId, Item item) {
+        if(getItem(itemId).isPresent() && itemId == item.getId()){
+            itemRepository.save(item);
+        }
+    }
+
+    public void deleteItem(String itemId) {
+        itemRepository.deleteById(itemId);
     }
 
     public void runTest(){
@@ -38,7 +53,6 @@ public class ItemService {
         itemRepository.save(itemD);
         itemRepository.save(itemE);
         itemRepository.save(itemZ);
-
     }
 
 }
