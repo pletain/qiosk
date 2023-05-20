@@ -20,11 +20,11 @@ const Auth = ({ sendinfo }) => {
             })
                 .then((res) => {
                     const { accessToken, newb } = res.data;
-                    if (res.status === 201) {
+                    if (res.status === 201) { // 가입된 사용자가 아닐 때
                         alert("회원가입 페이지로 이동합니다");
                         sendinfo(newb);
                         navigate('/signup', { replace: true });
-                    } else if (res.status === 200) {
+                    } else if (res.status === 200) { // 가입된 사용자일 때
                         try {
                             const expires = new Date();
                             expires.setMinutes(expires.getMinutes() + 100);
