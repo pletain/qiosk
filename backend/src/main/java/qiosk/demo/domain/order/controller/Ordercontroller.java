@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import qiosk.demo.domain.item.Item;
 import qiosk.demo.domain.item.ItemRepository;
+import qiosk.demo.domain.item.service.ItemService;
 import qiosk.demo.domain.order.OrderList;
 import qiosk.demo.domain.order.OrderRepository;
 import qiosk.demo.global.JWTService;
@@ -30,7 +31,7 @@ import qiosk.demo.global.JWTService;
 @RequiredArgsConstructor
 public class Ordercontroller {
 
-    private final ItemRepository itemRepository;
+    private final ItemService itemService;
     private final OrderRepository orderRepository;
     private final JWTService jwtService;
 
@@ -38,7 +39,7 @@ public class Ordercontroller {
     @GetMapping("")
     @ResponseBody
     public List<Item> Items(@RequestHeader(value = "storeCode") String storeCode) {
-        List<Item> items = itemRepository.findByStoreCode(storeCode);
+        List<Item> items = itemService.getItems(storeCode);
         return items;
     }
 
