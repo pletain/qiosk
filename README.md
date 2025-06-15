@@ -10,7 +10,7 @@
 - REST API 서버로 개발하여 프론트인 리액트와 REST 한 방식으로 통신합니다.
 - 로그인 서비스는 카카오 API를 활용하여 개발하였습니다.
 - 로그인 유지의 보안을 위해서 JWT를 활용하여 개발하였습니다.
-- 사용 기술: Spring, React, MongoDB, AWS
+- 사용 기술: Spring, React, Redux, MongoDB, AWS
                                                                                                                                                                                
 
 
